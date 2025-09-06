@@ -1,0 +1,12 @@
+Plotted to 'C:\Users\pardh\Desktop\PCB_Projects\OuroborosBluePill\OuroborosPCB\GerberFiles\pcbouroborosbp-F_Cu.gbr'.
+Plotted to 'C:\Users\pardh\Desktop\PCB_Projects\OuroborosBluePill\OuroborosPCB\GerberFiles\pcbouroborosbp-B_Cu.gbr'.
+Plotted to 'C:\Users\pardh\Desktop\PCB_Projects\OuroborosBluePill\OuroborosPCB\GerberFiles\pcbouroborosbp-F_Paste.gbr'.
+Plotted to 'C:\Users\pardh\Desktop\PCB_Projects\OuroborosBluePill\OuroborosPCB\GerberFiles\pcbouroborosbp-B_Paste.gbr'.
+Plotted to 'C:\Users\pardh\Desktop\PCB_Projects\OuroborosBluePill\OuroborosPCB\GerberFiles\pcbouroborosbp-F_Silkscreen.gbr'.
+Plotted to 'C:\Users\pardh\Desktop\PCB_Projects\OuroborosBluePill\OuroborosPCB\GerberFiles\pcbouroborosbp-B_Silkscreen.gbr'.
+Plotted to 'C:\Users\pardh\Desktop\PCB_Projects\OuroborosBluePill\OuroborosPCB\GerberFiles\pcbouroborosbp-F_Mask.gbr'.
+Plotted to 'C:\Users\pardh\Desktop\PCB_Projects\OuroborosBluePill\OuroborosPCB\GerberFiles\pcbouroborosbp-B_Mask.gbr'.
+Plotted to 'C:\Users\pardh\Desktop\PCB_Projects\OuroborosBluePill\OuroborosPCB\GerberFiles\pcbouroborosbp-Edge_Cuts.gbr'.
+Created Gerber job file 'C:\Users\pardh\Desktop\PCB_Projects\OuroborosBluePill\OuroborosPCB\GerberFiles\pcbouroborosbp-job.gbrjob'.
+Info: Done.
+Info: Done.
