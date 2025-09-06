@@ -1,2 +1,2 @@
-![toplayerpcb](image.png)
-![bottomlayerpcb](image-1.png)
+![toplayerpcb](top.png)
+![bottomlayerpcb](bottom.png)
