@@ -156,3 +156,15 @@ To understand, modify, or extend **Project Ouroboros Blue Pill**, familiarity wi
 - [Black Hat Wireless Attacks Training Materials (archived)](https://www.blackhat.com/html/archives.html)  
 - [Wi-Fi Alliance Security Resources](https://www.wi-fi.org/discover-wi-fi/security)  
 
+---
+
+## Inspiration & Gratitude. 
+
+The work of **ESP32-DIV** by [CiferTech](https://github.com/cifertech) has had a profound impact on my journey into cybersecurity and embedded hardware development. Their innovative approach to ESP32-based wireless systems opened my eyes to the possibilities of building low-cost, practical defense tools and experimenting with IoT security in a hands-on way. Studying their repository not only taught me technical techniques, but also inspired a mindset of creativity, persistence, and problem-solving that has fundamentally shaped the way I approach projects today. Without their work, Project Ouroboros Blue Pill — and my deep interest in bridging hardware with cybersecurity & the path I’ve chosen — wouldn’t have been possible. 
+ 
+*"Ideas find and claim us; we are merely their vessels, not their architects."* ~ **CiferTech**
+
+Repository: [https://github.com/cifertech/ESP32-DIV](https://github.com/cifertech/ESP32-DIV/tree/main)
+
+
+
