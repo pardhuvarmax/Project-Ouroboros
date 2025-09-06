@@ -164,7 +164,7 @@ The work of **ESP32-DIV** by [CiferTech](https://github.com/cifertech) has had a
  
 *"Ideas find and claim us; we are merely their vessels, not their architects."* ~ **CiferTech**
 
-Repository: [https://github.com/cifertech/ESP32-DIV](https://github.com/cifertech/ESP32-DIV/tree/main)
+Repository: [ESP32-DIV](https://github.com/cifertech/ESP32-DIV/tree/main)
 
 
 
