@@ -126,10 +126,9 @@ To understand, modify, or extend **Project Ouroboros Blue Pill**, familiarity wi
 
 ### Core Documentation
 - [Espressif ESP32 Documentation](https://docs.espressif.com)  
-- [PlatformIO ESP32 Docs](https://docs.platformio.org/en/latest/boards/espressif32/index.html)  
 
 ### Wireless Security & Defense
-- [OWASP: Wireless Attacks](https://owasp.org/www-community/attacks/Wireless_Attacks)  
+- [OWASP: Wifi Security](https://owasp.org/www-project-wi-fi-security-testing-guide/)  
 - [NIST Wi-Fi Security Guidelines (SP 800-153)](https://csrc.nist.gov/publications/detail/sp/800-153/final)  
 
 ### 2.4 GHz Wi-Fi Channels
