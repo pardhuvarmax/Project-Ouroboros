@@ -100,16 +100,13 @@ To understand, modify, or extend **Project Ouroboros Blue Pill**, familiarity wi
 ### Wi-Fi (Scanning, Monitoring, Deauth Defense)
 - [ESP-IDF Wi-Fi Programming Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/network/esp_wifi.html)  
 - [ESP32 Wi-Fi Sniffer Example](https://github.com/espressif/esp-idf/tree/master/examples/wifi/sniffer)  
-- [ESP32 Promiscuous Mode Tutorial](https://randomnerdtutorials.com/esp32-wi-fi-sniffer/)  
 
 ### Bluetooth Low Energy (BLE)
 - [ESP32 BLE Arduino](https://github.com/nkolban/ESP32_BLE_Arduino)  
 - [ESP-IDF BLE GAP Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/bluetooth/esp_gap_ble.html)  
-- [BLE Security Primer](https://novelbits.io/ble-security-part-1-pairing-bonding/)  
 
 ### Sub-GHz / RF Integration
 - [RadioLib](https://github.com/jgromes/RadioLib) – multi-protocol RF library  
-- [CC1101 with ESP32](https://github.com/SpaceTeddy/CC1101-ESP32)  
 - [NRF24L01 ESP32 Tutorial](https://lastminuteengineers.com/nrf24l01-arduino-wireless-communication/)  
 
 ### TinyML / Anomaly Detection
