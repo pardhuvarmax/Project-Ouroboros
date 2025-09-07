@@ -162,5 +162,16 @@ The work of **ESP32-DIV** by [CiferTech](https://github.com/cifertech) has had a
 
 Repository: [ESP32-DIV](https://github.com/cifertech/ESP32-DIV/tree/main)
 
+---
+
+## LICENSE
+
+Project Ouroboros (Blue Pill)
+Copyright (C) 2025 PardhuVarma
+
+Licensed under the GNU Affero General Public License v3.0
+See LICENSE file for full license text.
+
+
 
 
