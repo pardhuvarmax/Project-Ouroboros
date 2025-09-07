@@ -170,7 +170,7 @@ Project Ouroboros (Blue Pill)
 Copyright (C) 2025 PardhuVarma
 
 Licensed under the GNU Affero General Public License v3.0
-See LICENSE file for full license text.
+See [LICENSE](LICENSE) file for full license text.
 
 
 
