@@ -164,13 +164,15 @@ Repository: [ESP32-DIV](https://github.com/cifertech/ESP32-DIV/tree/main)
 
 ---
 
-## LICENSE
+## 📜 License Notice
 
-Project Ouroboros (Blue Pill)
-Copyright (C) 2025 PardhuVarma
+**Project Ouroboros (Blue Pill)**  
+Copyright (C) 2025 **PardhuVarma**
 
-Licensed under the GNU Affero General Public License v3.0
-See [LICENSE](LICENSE) file for full license text.
+This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.  
+You may use, modify, and redistribute this software under the terms of the AGPL-3.0.  
+
+For full details, see the [LICENSE](LICENSE) file included in this repository.
 
 
 
