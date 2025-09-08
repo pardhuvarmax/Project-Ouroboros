@@ -90,35 +90,110 @@ To understand, modify, or extend **Project Ouroboros Blue Pill**, familiarity wi
 
 ---
 
-## 📘 Critical Firmware Programming Resources
+# 📘 Critical Firmware Programming Resources for Project Ouroboros
 
-### Core ESP32 Development
-- [ESP-IDF (official SDK)](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/)  
+This collection is curated specifically for **Project Ouroboros** — focusing on **ESP32, SDR, OLED/touch modules, wireless protocols (Wi-Fi/BLE/Sub-GHz), AI/TinyML**, and cybersecurity attack/defense tools.  
+
+---
+
+## 🔹 Core ESP32 Development
+- [ESP-IDF (Official SDK)](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/)  
+  The primary C-based framework for ESP32 development, including FreeRTOS integration, Wi-Fi/BLE APIs, and peripheral drivers.  
+
 - [Arduino-ESP32](https://github.com/espressif/arduino-esp32)  
+  Arduino core for ESP32, good for quick prototyping before moving to low-level ESP-IDF.  
+
 - [ESP32 Technical Reference Manuals](https://www.espressif.com/en/support/download/documents)  
+  Official datasheets, registers, and hardware manuals for deep embedded C development.  
 
-### Wi-Fi (Scanning, Monitoring, Deauth Defense)
+- [ESP32 SDK Examples](https://github.com/espressif/esp-idf/tree/master/examples)  
+  Official code samples covering Wi-Fi sniffing, BLE advertising, FreeRTOS multitasking, and peripheral drivers.  
+
+---
+
+## 🔹 Wi-Fi (Scanning, Monitoring, Deauth Defense)
 - [ESP-IDF Wi-Fi Programming Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/network/esp_wifi.html)  
+  Official Wi-Fi API documentation for ESP32 (sniffing, packet injection, scanning, monitoring).  
+
 - [ESP32 Wi-Fi Sniffer Example](https://github.com/espressif/esp-idf/tree/master/examples/wifi/sniffer)  
+  Working C example for monitoring 802.11 traffic (foundation for packet monitor and beacon spammer).  
 
-### Bluetooth Low Energy (BLE)
+- [esp32-80211-tx (Custom Packet Injection)](https://github.com/SpacehuhnTech/esp32-80211-tx)  
+  Example code to send raw Wi-Fi frames (useful for deauth, beacon floods, replay attacks).  
+
+---
+
+## 🔹 Bluetooth Low Energy (BLE)
 - [ESP32 BLE Arduino](https://github.com/nkolban/ESP32_BLE_Arduino)  
+  High-level BLE library for Arduino/ESP32, easy entry point for scanning and advertising.  
+
 - [ESP-IDF BLE GAP Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/bluetooth/esp_gap_ble.html)  
+  Low-level API reference for BLE scanning, spoofing, and jamming using ESP-IDF.  
 
-### Sub-GHz / RF Integration
-- [RadioLib](https://github.com/jgromes/RadioLib) – multi-protocol RF library  
+---
+
+## 🔹 Sub-GHz / RF Integration
+- [RadioLib](https://github.com/jgromes/RadioLib)  
+  Multi-protocol RF communication library supporting LoRa, FSK, OOK, and more. Great for 433 MHz and 868 MHz modules.  
+
+- [HackRF C API (libhackrf)](https://github.com/mossmann/hackrf)  
+  Official HackRF library for SDR transmit/receive, replay attacks, and spectrum analysis.  
+
+- [rtl-sdr (C Library)](https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr)  
+  Lightweight SDR driver for RTL-SDR dongles, used for RF spectrum analysis and scanning.  
+
 - [NRF24L01 ESP32 Tutorial](https://lastminuteengineers.com/nrf24l01-arduino-wireless-communication/)  
+  Guide for 2.4 GHz NRF24L01 transceivers with ESP32, useful for Sub-GHz experiments.  
 
-### TinyML / Anomaly Detection
+---
+
+## 🔹 TinyML / Anomaly Detection
 - [TensorFlow Lite for Microcontrollers](https://www.tensorflow.org/lite/microcontrollers)  
-- [Arduino + TinyML Hello World](https://www.arduino.cc/pro/tutorials/ai/ml-kit-hello-world)  
-- [Edge Impulse](https://edgeimpulse.com/) – no-code TinyML model training  
+  Google’s TinyML framework for running lightweight anomaly detection and classification on ESP32.  
 
-### Dashboards & Visualization
+- [Arduino + TinyML Hello World](https://www.arduino.cc/pro/tutorials/ai/ml-kit-hello-world)  
+  Beginner-friendly tutorial for deploying ML models on microcontrollers.  
+
+- [Edge Impulse](https://edgeimpulse.com/)  
+  No-code ML model training platform, exports models as C code for deployment on ESP32.  
+
+- [Edge Impulse Embedded C SDK](https://docs.edgeimpulse.com/docs/development-platforms/embedded-c-sdk)  
+  SDK to integrate Edge Impulse-trained ML models into ESP32 firmware.  
+
+---
+
+## 🔹 Dashboards & Visualization
 - [ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer)  
+  Enables building lightweight web dashboards on ESP32 for visualizing data or managing tools.  
+
 - [ArduinoJson](https://arduinojson.org/)  
-- [U8g2](https://github.com/olikraus/u8g2)  
-- [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI) – spectrum/waterfall visualization  
+  Efficient JSON parsing/generation library for handling structured data on ESP32.  
+
+- [u8g2](https://github.com/olikraus/u8g2)  
+  Lightweight monochrome graphics library for OLED displays (packet monitor, text UI).  
+
+- [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI)  
+  High-performance library for TFT displays, suitable for spectrum/waterfall visualization.  
+
+- [LVGL (Light and Versatile Graphics Library)](https://github.com/lvgl/lvgl)  
+  Full-featured graphics/UI library for ESP32 with touchscreen support.  
+
+---
+
+## 🔹 Security + Offensive/Defensive Embedded C
+- [ESP8266 Deauther](https://github.com/SpacehuhnTech/esp8266_deauther)  
+  Reference project for deauth attacks and Wi-Fi defense. Written for ESP8266, but logic can be ported to ESP32.  
+
+---
+
+## 🔹 Suggested Learning Roadmap
+1. **Start with ESP-IDF basics** → learn FreeRTOS tasks, Wi-Fi, BLE.  
+2. **Build Wi-Fi tools** → sniffing, deauth defense, beacon flooding.  
+3. **Experiment with BLE APIs** → scanning, spoofing, jamming.  
+4. **Integrate RF/SDR tools** → HackRF + rtl-sdr for replay/jamming.  
+5. **Add visualization** → use `u8g2`/`TFT_eSPI`/`LVGL` for dashboards.  
+6. **Deploy TinyML models** → anomaly detection (defensive shield).  
+7. **Combine attack + defense modules** → multitask with FreeRTOS.   
 
 ---
 
