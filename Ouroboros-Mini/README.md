@@ -8,7 +8,7 @@ The Mini aims to showcase the capabilities of **wireless intrusion detection**, 
 
 ## 🔬 Objective
 
-- Deliver a **compact, deployable IoT defense prototype** using ESP32 with Wi-Fi and BLE capabilities.  
+- Deliver a **compact, deployable Cybersecurity & IoT Network Defense Prototype** using ESP32 with Wi-Fi and BLE capabilities.  
 - Provide **visual feedback via TFT display** and a **minimal web dashboard** for demonstration.  
 - Emphasize **system integration, signal acquisition, and telemetry visualization** rather than full-scale AI/TinyML processing.  
 - Serve as a **research and educational artifact**, illustrating wireless defensive concepts in real-world scenarios.  
