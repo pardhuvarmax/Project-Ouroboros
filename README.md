@@ -49,7 +49,7 @@ The Blue Pill is intended as an affordable, consumer-ready shield for personal, 
 ## 🛠️ Hardware Requirements
 
 **Core MCU**  
-- ESP32 (recommended: ESP32-WROOM, ESP32-S3 for more resources)  
+- ESP32 (recommended: ESP32-U, ESP32-S3 for more resources)  
 
 **Optional Modules**  
 - External Wi-Fi antenna for extended range and better RSSI-based spectrum analysis.
