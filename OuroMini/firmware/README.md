@@ -16,7 +16,7 @@ The Ouroboros Mini firmware is designed for rapid deployment in a 15-day experim
 ```
 firmware/
 │
-├── source/code/nRFBox/
+├── source/
 │   ├── .ino                       # Core firmware logic (setup, loop, task scheduling)
 │   ├── .h & .cpp files            # User-configurable constants and module enables
 │   └── libs/                      # Custom and third-party libraries (TFT, Wi-Fi/BLE)
