@@ -47,6 +47,8 @@ The Blue Pill is intended as an affordable, consumer-ready shield for personal, 
 ---
 
 ## Directory Structure
+
+```
 ├───.github
 │   └───ISSUE_TEMPLATE
 ├───BluePill
@@ -79,7 +81,7 @@ The Blue Pill is intended as an affordable, consumer-ready shield for personal, 
         ├───scripts
         ├───testing
         └───utils
-
+```
 
 ## 🛠️ Hardware Requirements
 
