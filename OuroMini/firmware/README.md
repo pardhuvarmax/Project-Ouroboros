@@ -1,7 +1,7 @@
 # Ouroboros Mini – Firmware Overview & Flow
 
 ## Overview
-The Ouroboros Mini firmware is designed for rapid deployment in a 15-day experimental build, optimized for on-device wireless scanning, telemetry logging, and TFT visualization. This firmware prioritizes functional demonstration over full commercial-grade features. The architecture is modular, allowing rapid integration of Wi-Fi, BLE, and optional RF scanning modules.
+The Ouroboros Mini firmware is designed for rapid deployment in a 15-day experimental build, optimized for on-device wireless defensive and security testing, telemetry logging, and TFT visualization. This firmware prioritizes functional demonstration over full commercial-grade features. The architecture is modular, allowing rapid integration of Wi-Fi, BLE, and optional RF scanning modules.
 
 **Scope:**
 - On-device scanning of Wi-Fi and BLE signals  
