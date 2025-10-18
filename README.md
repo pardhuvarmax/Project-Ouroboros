@@ -53,9 +53,7 @@ The Blue Pill is intended as an affordable, consumer-ready shield for personal, 
 │   └───ISSUE_TEMPLATE
 ├───BluePill
 │   ├───Documentations
-│   ├───GerberFiles
-│   └───KiCAD-Files
-│       └───pcbouroborosbp-backups
+│   └───GerberFiles
 └───OuroMini
     ├───dashboard
     │   ├───design
