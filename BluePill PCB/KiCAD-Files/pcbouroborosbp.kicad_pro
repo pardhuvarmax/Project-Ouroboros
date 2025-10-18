@@ -267,7 +267,7 @@
       "idf": "",
       "netlist": "",
       "plot": "GerberFiles/",
-      "pos_files": "",
+      "pos_files": "../Documentations/",
       "specctra_dsn": "",
       "step": "",
       "svg": "",
