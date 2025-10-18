@@ -163,4 +163,4 @@ Compile and upload the OuroMini sketch for customization. This method requires s
 - Install USB-to-serial drivers if the port isn’t detected.  
 - Lower upload speed to 115200 or try another cable/port if needed.
 
-> refer this, or alternatively [ESP32-DIV](https://github.com/cifertech/ESP32-DIV/tree/main) Wiki of **Cifertech**
+> refer this, or alternatively [ESP32-DIV](https://github.com/cifertech/ESP32-DIV/tree/main) Wiki of **[Cifertech](https://github.com/cifertech)**
