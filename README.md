@@ -46,6 +46,41 @@ The Blue Pill is intended as an affordable, consumer-ready shield for personal, 
 
 ---
 
+## Directory Structure
+├───.github
+│   └───ISSUE_TEMPLATE
+├───BluePill
+│   ├───Documentations
+│   ├───GerberFiles
+│   └───KiCAD-Files
+│       └───pcbouroborosbp-backups
+└───OuroMini
+    ├───dashboard
+    │   ├───design
+    │   └───webapp
+    │       └───api
+    ├───docs
+    ├───firmware
+    │   ├───bin
+    │   ├───flashfile
+    │   ├───libraries
+    │   └───source
+    ├───graphics
+    ├───hardware
+    │   ├───PCB
+    │   │   └───BOM
+    │   └───Schematics
+    ├───media
+    │   ├───images
+    │   ├───renders
+    │   └───videos
+    └───tools
+        ├───flashtool
+        ├───scripts
+        ├───testing
+        └───utils
+
+
 ## 🛠️ Hardware Requirements
 
 **Core MCU**  
