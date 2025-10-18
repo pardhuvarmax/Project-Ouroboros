@@ -4,7 +4,7 @@
 The Ouroboros Mini firmware is designed for rapid deployment in a 15-day experimental build, optimized for on-device wireless defensive and security testing, telemetry logging, and TFT visualization. This firmware prioritizes functional demonstration over full commercial-grade features. The architecture is modular, allowing rapid integration of Wi-Fi, BLE, and optional RF scanning modules.
 
 **Scope:**
-- On-device scanning of Wi-Fi and BLE signals  
+- On-device scanning/security testing of Wi-Fi and BLE signals  
 - Local logging to SD card  
 - Real-time visualization on ILI9341 TFT display  
 - Simple modular firmware architecture for rapid development
@@ -16,10 +16,10 @@ The Ouroboros Mini firmware is designed for rapid deployment in a 15-day experim
 ```
 firmware/
 │
-├── source/
-│   ├── main.ino            # Core firmware logic (setup, loop, task scheduling)
-│   ├── config.h            # User-configurable constants and module enables
-│   └── libs/               # Custom and third-party libraries (TFT, Wi-Fi/BLE)
+├── source/code/nRFBox/
+│   ├── .ino                       # Core firmware logic (setup, loop, task scheduling)
+│   ├── .h & .cpp files            # User-configurable constants and module enables
+│   └── libs/                      # Custom and third-party libraries (TFT, Wi-Fi/BLE)
 │
 ├── binaries/               # Precompiled firmware binaries (.bin)
 └── flashing.md       # Flashing instructions for prototype devices
