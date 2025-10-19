@@ -12,7 +12,7 @@ The Mini aims to showcase the capabilities of **wireless intrusion detection**, 
 ## 🔬 Objective
 
 - Deliver a **compact, deployable Cybersecurity & IoT Network Defense Prototype** using ESP32 with Wi-Fi and BLE capabilities.  
-- Provide **visual feedback via TFT display** and a **minimal web dashboard** for demonstration.  
+- Provide **visual feedback via OLED display** and a **minimal web dashboard** for demonstration.  
 - Emphasize **system integration, signal acquisition, and telemetry visualization** rather than full-scale AI/TinyML processing.  
 - Serve as a **research and educational artifact**, illustrating wireless defensive concepts in real-world scenarios.  
 
@@ -25,7 +25,7 @@ The Mini aims to showcase the capabilities of **wireless intrusion detection**, 
 | Wi-Fi 2.4 GHz | Scanning, device enumeration, RSSI mapping | Detects beacon floods, rogue APs (demo only) |
 | BLE | Advertising monitoring, device presence detection | Minimal anomaly flags; presentation-focused |
 | Sub-GHz RF | Basic signal detection and logging | Optional; limited to presence monitoring |
-| On-Device Display | ILI9341 TFT visualizations | Real-time RSSI plots and basic metrics |
+| On-Device Display | OLED visualizations | Real-time metrics |
 | Data Storage | SD card logging | Configurations, logs, signal captures for demo |
 
 > Designed for **high visual impact and interactive demonstration**, not persistent network defense or comprehensive security enforcement.
@@ -40,7 +40,7 @@ The Mini aims to showcase the capabilities of **wireless intrusion detection**, 
 - **LF33 Voltage Regulator** — ensures stable 3.3V supply  
 - **TP4056 Battery Management** — Li-ion protection and charging  
 - **CP2102 USB-to-Serial** — flashing, debugging, serial telemetry  
-- **ILI9341 TFT Display** — on-device data visualization  
+- **OLED Display** — on-device data visualization  
 - **SD Card Slot** — persistent log storage  
 - **Antenna Connectors** — Wi-Fi/BLE external antennas for enhanced range  
 
