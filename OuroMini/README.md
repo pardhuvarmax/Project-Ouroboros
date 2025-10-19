@@ -110,6 +110,7 @@ Ouroboros-Mini/
 - **Firmware_Flow.md** — Module-level firmware description  
 - **Dashboard_Design.md** — Data visualization methodology and UI design  
 - **Expo_Presentation.md** — Deployment instructions and demonstration scripts  
+- **[OuroMini Presentation](https://stool-vast-77297611.figma.site/)** - Expo PPT
 
 ---
 
