@@ -27,13 +27,14 @@ firmware/
 
 ### Key Modules
 
-| Module | Purpose | Notes |
-|--------|---------|-------|
-| `WiFiScanner` | Scans all Wi-Fi channels, logs RSSI and SSID, detects anomalies | Minimal scan interval for expo demo |
-| `BLEScanner` | Detects nearby BLE advertisements, logs MAC and RSSI | Filtered for non-invasive demonstration |
-| `DisplayManager` | Handles TFT updates, menu navigation, and basic spectrum visualization | Uses ILI9341 SPI interface |
-| `SDLogger` | Writes scan results and events to microSD card | FAT32 compatible, logs timestamped CSV files |
-| `Config` | Central configuration constants, e.g., scan intervals, display refresh rate | Allows rapid parameter adjustments |
+| Feature      | Status  | Reliability | Notes                                                                                          |
+|--------------|---------|-------------|------------------------------------------------------------------------------------------------|
+| Scanner      | Stable  | High        | Reliably scans the 2.4 GHz band to detect active channels and nearby devices. Occasional misses in high‑interference environments. |
+| Analyzer     | Stable  | High        | Provides useful insights into detected signals, but additional updates are needed for improved accuracy and detailed analysis. |
+| Jammer       | Stable  | High        | Basic jamming works but effectiveness varies by device type and signal strength. Testing on select channels is recommended. |
+| BLE Jammer   | Stable  | High        | Disrupts BLE devices inconsistently. Further improvements are needed to ensure stability and effectiveness across BLE variants. |
+| BLE Spoofer  | Stable  | Low         | Capable of simulating basic BLE signals but has limited compatibility. Best for controlled testing scenarios. |
+| Sour Apple   | Stable  | Low         | Specialized attack method with limited reliability; effective only under specific conditions. Further tuning is required. |
 
 ---
 
