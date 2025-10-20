@@ -1,8 +1,3 @@
-/* ____________________________
-   This software is licensed under the MIT License:
-   https://github.com/cifertech/nrfbox
-   ________________________________________ */
-
 #ifndef CONFIG_H
 #define CONFIG_H
 

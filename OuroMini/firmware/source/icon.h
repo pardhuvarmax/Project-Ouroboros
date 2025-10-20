@@ -1,7 +1,3 @@
-/* ____________________________
-   This software is licensed under the MIT License:
-   https://github.com/cifertech/nrfbox
-   ________________________________________ */
 
 // 'satelite', 16x16px
 const unsigned char bitmap_icon_satelite [] PROGMEM = {

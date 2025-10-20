@@ -1,7 +1,3 @@
-/* ____________________________
-   This software is licensed under the MIT License:
-   https://github.com/cifertech/nrfbox
-   ________________________________________ */
 
 #include "config.h"
 #include "icon.h"
