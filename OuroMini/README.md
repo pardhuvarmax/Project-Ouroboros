@@ -3,7 +3,7 @@
 <img width="1918" height="953" alt="image" src="https://github.com/user-attachments/assets/085d83fb-c0c3-4fa0-bbd3-94b4ded8f8ed" />
 
 
-**Ouroboros Mini (OuroMini)** is an ESP32-based experimental wireless monitoring and defensive/security research platform, engineered for a **high-intensity 15-day development cycle** with focus on **real-time demonstration and expo presentation**. This iteration is **not a fully featured production system**, but a functional proof-of-concept highlighting core wireless security monitoring, basic anomaly detection, and on-device visualization.  
+**Ouroboros Mini (OuroMini)** is an ESP32-based experimental wireless monitoring & security research platform, engineered for a **high-intensity 15-day development cycle** with focus on **real-time demonstration and expo presentation**. This iteration is **not a fully featured production system**, but a functional proof-of-concept highlighting core wireless security monitoring, basic anomaly detection, and on-device visualization.  
 
 The Mini aims to showcase the capabilities of **wireless intrusion detection**, **cross-protocol monitoring**, and **dashboard-based visualization** within a constrained development period, emphasizing rapid deployment, reproducibility, and demonstrable results.
 
