@@ -50,6 +50,15 @@ The platform includes features that can be **illegal or restricted**:
 | **Design Intention** | High visual impact, interactive demonstration with cross-device compatibility (Flipper, LilyGO CC1101, ESP32, M5). | Not for continuous network defense; controlled dual-use only. |
 
 ---
+## OuroMini Feature Classification: Defensive, Dual‑Use, and Offensive Capabilities
+
+| Category               | Count | Example Features / Notes                                                                                                                                                                                                                                         |
+| ---------------------- | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Defensive**          | 28    | Passive monitoring and analysis-focused capabilities: <br>- Wi-Fi scanning, device enumeration, RSSI mapping<br>- BLE presence detection, advertising monitoring<br>- Sub-GHz spectrum analysis (RX only)<br>- Packet sniffing, deep packet inspection<br>- SD/LittleFS logging and file management<br>- OLED visualization (waterfall, ghost traces, metrics)<br>- Dashboard telemetry display<br>- Configurable UI, brightness, orientation, color accents, boot sound control<br>- Safe IR/NRF/Frequency observation<br>- NFC/RFID read-only scanning<br>- ESP-NOW receive-only monitoring<br>- FM spectrum scan (RX only)<br>**Notes:** Fully passive; no signal disruption or attacks. Suitable for monitoring, research, and demo analytics. |
+| **Neutral / Dual‑Use** | 14    | Features that can be either passive or active depending on configuration: <br>- Sub-GHz signal replay (TX off by default)<br>- NRF24 mesh simulation (passive capture vs. active packet injection)<br>- BLE emulation or beaconing (default passive)<br>- IR replay sequences (demo mode vs. active control)<br>- USB/BADUSB scripting (local testing only)<br>- ESP-NOW send/receive (demo vs. actual control)<br>- Some dashboard/web controls can trigger active modules but default read-only<br>**Notes:** Requires careful configuration to remain safe; can be used in controlled dual-use scenarios. |
+| **Offensive**          | 18    | Active attack or disruption features: <br>- Wi-Fi deauthentication (2.4/5 GHz)<br>- Deauth flood targeting multiple devices<br>- Wi-Fi beacon spam / fake AP floods<br>- Evil Portal (phishing demo page)<br>- WPS attacks<br>- BLE injection/spam across OS platforms<br>- BLE keyboard injection (Cardputer/T-Deck)<br>- NFC/RFID cloning & write/emulation<br>- IR signal replay affecting other devices<br>- Sub-GHz jamming (full/intermittent PWM)<br>- NRF24 jamming / MouseJack testing<br>- BADUSB actuation affecting connected systems<br>**Notes:** Only to be used in controlled lab/demo environments; illegal if used without permission. |
+
+---
 
 ## 🛠️ Hardware Architecture
 
