@@ -1,8 +1,7 @@
-# OuroMini — Dual-Use Experimental Rapid Build (Red Pill)
-
+# OuroMini — Dual-Use Experimental Rapid Build.
 <img width="1520" height="910" alt="image" src="https://github.com/user-attachments/assets/db5c9c23-6bdd-4904-aa3a-1df08a7a8a2b" />
 
-
+---
 **Ouroboros Mini (OuroMini)** is an **ESP32-based experimental wireless monitoring and security testing platform**. Engineered under a **15-day rapid prototype cycle**, it combines **dual-use capabilities** — both **defensive monitoring** and **controlled offensive research** — for educational, research, and expo demonstration purposes.  
 
 ---
@@ -19,8 +18,7 @@
 
 ## ⚠️ Dual-Use & Legal Considerations
 ![Warning](media/WARNING.svg)
-
-
+> Warning: OuroMini is intended solely for educational, research, and ethical security testing purposes. Unauthorized use on networks or devices you do not own or have explicit permission to test is illegal and strictly prohibited. Users must comply with local wireless regulations (FCC, CE, ISM bands) and follow responsible disclosure practices. The developers are not liable for misuse or unlawful activities. Always operate safely, ethically, and within the law.
 
 ---
 
@@ -119,7 +117,12 @@ dashboard/
 - **Lab Isolation:** Use Faraday cages or dedicated RF testing environments  
 - **Permission:** Obtain explicit consent before running offensive functions  
 - **High-Risk Modules:** Segregate jamming, Evil Portal, BLE spoofing scripts  
-- **Demonstration:** Keep visualizations and dashboard active to highlight research/education value
+- **Demonstration:** Keep visualizations and dashboard active to highlight research/education value.
+
+---
+
+## Team OuroMini
+<img width="1524" height="496" alt="Screenshot 2025-10-21 150201" src="https://github.com/user-attachments/assets/0fd03122-b55d-41dc-b130-a8b48d0b1882" />
 
 ---
 
@@ -127,3 +130,5 @@ dashboard/
 
 **Project Ouroboros** © 2025 **MARS Foundation**  
 Licensed under **GNU AGPL-3.0** – use, modify, and redistribute under AGPL terms. See [LICENSE](LICENSE).
+
+---
