@@ -1,6 +1,7 @@
 # OuroMini — Dual-Use Experimental Rapid Build (Red Pill)
 
-<img width="1918" height="953" alt="OuroMini" src="https://github.com/user-attachments/assets/085d83fb-c0c3-4fa0-bbd3-94b4ded8f8ed" />
+<img width="1520" height="910" alt="image" src="https://github.com/user-attachments/assets/db5c9c23-6bdd-4904-aa3a-1df08a7a8a2b" />
+
 
 **Ouroboros Mini (OuroMini)** is an **ESP32-based experimental wireless monitoring and security testing platform**. Engineered under a **15-day rapid prototype cycle**, it combines **dual-use capabilities** — both **defensive monitoring** and **controlled offensive research** — for educational, research, and expo demonstration purposes.  
 
@@ -107,7 +108,8 @@ dashboard/
 - `docs/Architecture.md` — Full hardware/software mapping  
 - `docs/Firmware_Flow.md` — Module descriptions & compile flags  
 - `docs/Expo_Presentation.md` — Demo instructions & safety scripts  
-- `docs/Dashboard_Design.md` — Data visualization & UI layout  
+- `docs/Dashboard_Design.md` — Data visualization & UI layout 
+- [`Expo-PPT`](https://stool-vast-77297611.figma.site/) - Expo Presentation
 
 ---
 
