@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="140" viewBox="0 0 800 140" role="img" aria-label="Experimental Legal Warning">
+  <rect x="2" y="2" width="796" height="136" rx="8" fill="#fff0f0" stroke="#d9534f" stroke-width="4"></rect>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="72" y="40" font-size="20" font-weight="700" fill="#d9534f">⚠️ EXPERIMENTAL — LEGAL WARNING</text>
+    <text x="72" y="70" font-size="14" fill="#333">
+      <tspan x="72" dy="1.2em">This firmware is experimental. Use only in controlled, authorized environments.</tspan>
+      <tspan x="72" dy="1.2em">High-risk features (jamming, deauth, Evil Portal, NFC/RFID writes)</tspan>
+      <tspan x="72" dy="1.2em">may be illegal without explicit permission — obtain written consent and comply with local laws.</tspan>
+    </text>
+  </g>
+  <text x="18" y="80" font-size="36" fill="#d9534f" font-weight="700">!</text>
+</svg>
