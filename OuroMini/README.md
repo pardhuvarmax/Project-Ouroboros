@@ -17,8 +17,7 @@
 ---
 
 ## ⚠️ Dual-Use & Legal Considerations
-
-
+![Warning](media/WARNING.svg)
 
 
 
