@@ -2,7 +2,7 @@
 
 The OuroMini (Ouroboros Mini) requires firmware or code to unlock its wireless capabilities. This guide covers three methods to upload firmware: OTA/SD Card, Flash Download Tool, and Arduino IDE. These methods suit both beginners and advanced users working with the mini prototype.
 
-⚠️ **Note:** Always download firmware and sketches from the OuroMini repository.
+⚠️ **Note:** Always download firmware and sketches from the OuroMini or nRFBOX repository.
 
 ---
 

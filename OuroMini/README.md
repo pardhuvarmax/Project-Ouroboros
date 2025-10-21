@@ -1,128 +1,127 @@
-# OuroMini — Experimental Rapid Build (Red Pill)
+# OuroMini — Dual-Use Experimental Rapid Build (Red Pill)
 
-<img width="1918" height="953" alt="image" src="https://github.com/user-attachments/assets/085d83fb-c0c3-4fa0-bbd3-94b4ded8f8ed" />
+<img width="1918" height="953" alt="OuroMini" src="https://github.com/user-attachments/assets/085d83fb-c0c3-4fa0-bbd3-94b4ded8f8ed" />
 
-
-**Ouroboros Mini (OuroMini)** is an ESP32-based experimental wireless monitoring and defensive/security research platform, engineered for a **high-intensity 15-day development cycle** with focus on **real-time demonstration and expo presentation**. This iteration is **not a fully featured production system**, but a functional proof-of-concept highlighting core wireless security monitoring, basic anomaly detection, and on-device visualization.  
-
-The Mini aims to showcase the capabilities of **wireless intrusion detection**, **cross-protocol monitoring**, and **dashboard-based visualization** within a constrained development period, emphasizing rapid deployment, reproducibility, and demonstrable results.
+**Ouroboros Mini (OuroMini)** is an **ESP32-based experimental wireless monitoring and security testing platform**. Engineered under a **15-day rapid prototype cycle**, it combines **dual-use capabilities** — both **defensive monitoring** and **controlled offensive research** — for educational, research, and expo demonstration purposes.  
 
 ---
 
-## 🔬 Objective
+## 🔬 Project Objective
 
-- Deliver a **compact, deployable Cybersecurity & IoT Network Defense Prototype** using ESP32 with Wi-Fi and BLE capabilities.  
-- Provide **visual feedback via OLED display** and a **minimal web dashboard** for demonstration.  
-- Emphasize **system integration, signal acquisition, and telemetry visualization** rather than full-scale AI/TinyML processing.  
-- Serve as a **research and educational artifact**, illustrating wireless defensive concepts in real-world scenarios.  
+1. Deliver a **compact cross-protocol wireless research platform**: Wi-Fi, BLE, Sub-GHz, IR, RFID/NFC, NRF24, and FM.
+2. Provide **real-time visualization** on **OLED display** and optional **LED array indicators**.
+3. Enable **signal capture, replay, and controlled jamming** for research and teaching.
+4. Demonstrate **wireless anomaly detection, telemetry visualization, and interactive dashboards** in expos and labs.
+5. Serve as a **modular research artifact**, showcasing integration between hardware, firmware, and visual analytics.
 
 ---
 
-## ⚙️ Experimental Capabilities
+## ⚠️ Dual-Use & Legal Considerations
 
-| Protocol Layer | Functionality | Notes |
-|----------------|---------------|-------|
-| Wi-Fi 2.4 GHz | Scanning, device enumeration, RSSI mapping | Detects beacon floods, rogue APs (demo only) |
-| BLE | Advertising monitoring, device presence detection | Minimal anomaly flags; presentation-focused |
-| Sub-GHz RF | Basic signal detection and logging | Optional; limited to presence monitoring |
-| On-Device Display | OLED visualizations | Real-time metrics |
-| Data Storage | SD card logging | Configurations, logs, signal captures for demo |
 
-> Designed for **high visual impact and interactive demonstration**, not persistent network defense or comprehensive security enforcement.
+
+
+
+---
+
+## ⚙️ Full Feature Set
+
+| Protocol Layer | Features | Notes |
+|---|---|---|
+| **Sub‑GHz (CC1101)** | - Signal reading & emulation (capture & replay complex remotes)<br>- Spectrum analyzer with graphical visualization<br>- Signal jamming: full/intermittent PWM waveforms<br>- Organized signal storage, replay profiles | CC1101 support for Flipper Zero, LilyGO CC1101, ESP32, M5 devices. Demo/research only; comply with RF regulations. |
+| **Wi‑Fi (2.4 / 5 GHz)** | - Network scanning, device enumeration, RSSI mapping<br>- Deauth & flood attacks (including 5GHz via RTL8720DN)<br>- Beacon spam, Evil Portal, WPS attacks<br>- Packet sniffing, deep packet inspection, advanced traffic analysis<br>- Wardriving, host scanning, WireGuard tunneling<br>- Pwnagotchi & Brucegotchi integration | Hardware-dependent (ESP32, RTL8720DN, SDR). Demo & pen-test research; not persistent defense. |
+| **Bluetooth (BLE)** | - Advertising monitoring & RSSI mapping<br>- BLE spoofing/emulation (device cloning)<br>- BLE spam (iOS, Android, Windows)<br>- BLE beacon creation & manipulation<br>- Packet interception, BLE keyboard (Cardputer/T-Deck) | Platform-dependent. Focus on research, robustness testing, and educational demos. |
+| **RFID / NFC** | - Scan, save, clone, and emulate 125 kHz/HF NDEF tags<br>- Write/erase tags, Amiibo/Chameleon workflows<br>- Tag emulation for access control testing | PN532 & compatible modules. Auditing & lab testing only. |
+| **Infrared (IR)** | - Capture & send IR signals (NEC, SIRC, RC5, Samsung, custom sequences)<br>- TV-B-Gone mode for demo<br>- IR database with thousands of remotes | Visual demonstration focus; low legal risk but caution in public areas. |
+| **NRF24L01+ / 2.4GHz ISM** | - 2.4GHz communication testing, packet capture & analysis<br>- Mesh network simulation & packet inspection<br>- NRF24 jamming & MouseJack-style demos | Requires NRF24 module; highlights IoT/mesh network security tradeoffs. |
+| **FM (optional)** | - Spectrum scan, broadcast control, hijack traffic announcements (demo) | Use only reserved/demo channels. Dependent on regional regulations. |
+| **On-Device Display (OLED)** | - Waterfall & spectrum graphs, ghost traces (fading signal history)<br>- Target/device lists, real-time metrics<br>- Brightness, orientation, color accents, boot sound control | Optimized for OLED; high visual impact demos. |
+| **Data Storage & Filesystems** | - SD/LittleFS logging: configs, captured signals, IR/RF/RFID files, images, scripts<br>- SD Card & SPIFFS manager, image viewers, BADUSB storage integration | Persistent demo logs; export for offline analysis. |
+| **USB / Scripts / BADUSB** | - USB keyboard scripting, JavaScript interpreter, OpenHaystack, iButton, QR Codes, PIX, WebUI support<br>- ESP-NOW send/receive files & commands | Only for demonstration; responsible use mandatory. |
+| **Connectivity & Services** | - Wi-Fi client/AP, WireGuard, Telnet/SSH, TCP client/listener, Web server & WebUI, Wigle upload | Remote telemetry & demo control; sandbox for safety. |
+| **Config / UI / Misc** | - Configurable UI, boot text, RTC/NTP clock, brightness/dim, sleep/restart<br>- Orientation, UI color, LED control | Polished UX; highlights rapid prototyping design. |
+| **Design Intention** | High visual impact, interactive demonstration with cross-device compatibility (Flipper, LilyGO CC1101, ESP32, M5). | Not for continuous network defense; controlled dual-use only. |
+
+---
+## OuroMini Feature Classification: Defensive, Dual‑Use, and Offensive Capabilities
+
+| Category               | Count | Example Features / Notes                                                                                                                                                                                                                                         |
+| ---------------------- | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Defensive**          | 28    | Passive monitoring and analysis-focused capabilities: <br>- Wi-Fi scanning, device enumeration, RSSI mapping<br>- BLE presence detection, advertising monitoring<br>- Sub-GHz spectrum analysis (RX only)<br>- Packet sniffing, deep packet inspection<br>- SD/LittleFS logging and file management<br>- OLED visualization (waterfall, ghost traces, metrics)<br>- Dashboard telemetry display<br>- Configurable UI, brightness, orientation, color accents, boot sound control<br>- Safe IR/NRF/Frequency observation<br>- NFC/RFID read-only scanning<br>- ESP-NOW receive-only monitoring<br>- FM spectrum scan (RX only)<br>**Notes:** Fully passive; no signal disruption or attacks. Suitable for monitoring, research, and demo analytics. |
+| **Neutral / Dual‑Use** | 14    | Features that can be either passive or active depending on configuration: <br>- Sub-GHz signal replay (TX off by default)<br>- NRF24 mesh simulation (passive capture vs. active packet injection)<br>- BLE emulation or beaconing (default passive)<br>- IR replay sequences (demo mode vs. active control)<br>- USB/BADUSB scripting (local testing only)<br>- ESP-NOW send/receive (demo vs. actual control)<br>- Some dashboard/web controls can trigger active modules but default read-only<br>**Notes:** Requires careful configuration to remain safe; can be used in controlled dual-use scenarios. |
+| **Offensive**          | 18    | Active attack or disruption features: <br>- Wi-Fi deauthentication (2.4/5 GHz)<br>- Deauth flood targeting multiple devices<br>- Wi-Fi beacon spam / fake AP floods<br>- Evil Portal (phishing demo page)<br>- WPS attacks<br>- BLE injection/spam across OS platforms<br>- BLE keyboard injection (Cardputer/T-Deck)<br>- NFC/RFID cloning & write/emulation<br>- IR signal replay affecting other devices<br>- Sub-GHz jamming (full/intermittent PWM)<br>- NRF24 jamming / MouseJack testing<br>- BADUSB actuation affecting connected systems<br>**Notes:** Only to be used in controlled lab/demo environments; illegal if used without permission. |
 
 ---
 
 ## 🛠️ Hardware Architecture
 
-**Core Components:**
+- **MCU:** ESP32-S3-WROOM-1 (central processing & wireless control)  
+- **Power Management:** TP4056 Li-ion charging, LDO voltage regulators  
+- **Visual:** OLED 0.96-1.3” + WS2812 LED array  
+- **Storage:** SD Card & LittleFS  
+- **Inputs:** Buttons, tactile switches, slide switches, buzzer  
+- **Peripheral Modules:** Optional Sub-GHz transceivers, NRF24, IR, CC1101  
 
-- **ESP32-U (16 MB)** — central processing and wireless management MCU  
-- **LF33 Voltage Regulator** — ensures stable 3.3V supply  
-- **TP4056 Battery Management** — Li-ion protection and charging  
-- **CP2102 USB-to-Serial** — flashing, debugging, serial telemetry  
-- **OLED Display** — on-device data visualization  
-- **SD Card Slot** — persistent log storage  
-- **Antenna Connectors** — Wi-Fi/BLE external antennas for enhanced range  
-
-**System Layout:**  
-The Mini maintains a **mainboard-only design** for simplicity. Peripheral modules (e.g., external Sub-GHz transceivers) are optional and minimally integrated to maintain rapid development feasibility.
+> Designed as a **mainboard-only experimental platform** for rapid prototyping; optional modules extend dual-use research capabilities.
 
 ---
 
 ## 💻 Firmware Overview
 
-- Built on **Arduino-ESP32** framework for fast prototyping.  
-- **Source structure:**  
-  ```
-  firmware/
-    ├── src/         → main.ino, config.h
-    ├── libs/        → hardware drivers, TFT, SD card, Wi-Fi/BLE libraries
-    └── binaries/    → compiled firmware (.bin) for deployment
-  ```  
-- **Core functional modules:** Wi-Fi scanning, BLE monitoring, basic anomaly detection, SD logging, TFT visualization.  
-- **Upload methods:** Arduino IDE or Espressif Flash Download Tool.  
-- Precompiled `.bin` available for rapid deployment.
-
-> Firmware emphasizes **robust interfacing, data integrity, and modularity** for short-term deployment demonstrations.
+- **Framework:** Arduino-ESP32 for fast deployment  
+- **Structure:**
+```
+firmware/
+├── src/       # main.ino, config.h
+├── libs/      # drivers: Wi-Fi, BLE, Sub-GHz, IR, NFC, NRF24
+├── modules/   # offensive/defensive dual-use feature toggles
+└── binaries/  # precompiled .bin for rapid flashing
+```
+- **Core functionality:** Wi-Fi/BLE scanning, anomaly detection, signal capture/replay, SD logging, OLED visualization, minimal WebUI dashboard  
+- **Upload:** Arduino IDE or Espressif Flash Download Tool  
+- Modular design allows safe **feature toggling** to disable high-risk modules during demos
 
 ---
 
-## 🌐 Dashboard
+## 🌐 Web Dashboard (Expo-Focused)
 
-The **Ouroboros Mini Dashboard** is a minimalistic web interface designed to visualize real-time telemetry:
+- Minimalist dashboard to visualize telemetry:  
+  - Device presence (Wi-Fi/BLE)  
+  - Signal strength graphs (RSSI)  
+  - Detection flags & alert logs  
+  - Device status & uptime metrics  
 
-- Device presence graphs (Wi-Fi/BLE)  
-- RSSI signal strength plots  
-- Detection flags for basic anomalies  
-- Device status and uptime metrics  
-
-**Structure:**
 ```
 dashboard/
-  ├── design/           → Figma or static prototype for visualization
-  ├── webapp/           → index.html, dashboard.js, style.css
-  └── api/              → Python endpoint for ESP32 telemetry streaming
+├── webapp/    # index.html, dashboard.js, style.css
+├── api/       # Python/Flask endpoint for telemetry
+└── design/    # Figma/static visual prototypes
 ```
 
-> Dashboard is optimized for **expo visibility**, not for production analytics or full IoT integration.
-
----
-
-## 📂 Repository Structure
-
-```
-Ouroboros-Mini/
-├── docs/                → Abstract, Architecture, Expo Notes
-├── hardware/            → Gerbers, Schematics, 3D renders
-├── firmware/            → Source, binaries, libraries
-├── dashboard/           → Web app and prototype visuals
-├── tools/               → Utilities for logging, SD card updates
-└── media/               → Photos, renders, and expo videos
-```
+> Dashboard optimized for **high visibility in expo/lab demos**, not production analytics.
 
 ---
 
 ## 📄 Documentation
 
-- **Abstract.md** — Project overview and research rationale  
-- **Architecture.md** — Hardware/software architecture for integration  
-- **Hardware_BOM.md** — Component specification, suppliers, and cost notes  
-- **Firmware_Flow.md** — Module-level firmware description  
-- **Dashboard_Design.md** — Data visualization methodology and UI design  
-- **Expo_Presentation.md** — Deployment instructions and demonstration scripts  
-- **[OuroMini Presentation](https://stool-vast-77297611.figma.site/)** - Expo PPT
+- `docs/Abstract.md` — Overview & research rationale  
+- `docs/Architecture.md` — Full hardware/software mapping  
+- `docs/Firmware_Flow.md` — Module descriptions & compile flags  
+- `docs/Expo_Presentation.md` — Demo instructions & safety scripts  
+- `docs/Dashboard_Design.md` — Data visualization & UI layout  
 
 ---
 
-## ⚠️ Notes
+## 🔧 Safety & Operational Guidelines
 
-- **Experimental Build:** Fully functional for demonstration, but **limited in scope**.  
-- **Time-Constrained:** Developed under a **15-day intensive schedule** for expo showcase.  
-- **No AI or TinyML** — proof-of-concept monitoring only.  
-- **Open-Ended:** Suitable for research, prototyping, and educational purposes.  
+- **Dual-Use:** Compile-time feature flags separate offensive/defensive modules  
+- **Lab Isolation:** Use Faraday cages or dedicated RF testing environments  
+- **Permission:** Obtain explicit consent before running offensive functions  
+- **High-Risk Modules:** Segregate jamming, Evil Portal, BLE spoofing scripts  
+- **Demonstration:** Keep visualizations and dashboard active to highlight research/education value
 
 ---
 
 ## 🧾 License
 
-**MIT License** — Open for research, educational use, and demonstration. Not intended for commercial deployment.
+**MIT License** — Open for research, educational, and controlled demo use. **Not for commercial deployment or unauthorized offensive use.**
