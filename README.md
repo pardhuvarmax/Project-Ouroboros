@@ -49,7 +49,6 @@ The Ouroboros philosophy: **eternal cycle of attack & defense** — integrating 
 **Resources:**
 
 * [Blue Pill Docs](./BluePill/Documentations)
-* [Gerber & BOM](./BluePill/GerberFiles)
 
 ---
 
@@ -68,7 +67,9 @@ The Ouroboros philosophy: **eternal cycle of attack & defense** — integrating 
 
 **Firmware:** Modular scanning, menu-driven UI, safe demo constraints.
 
-**Docs:** [OuroMini Expo Documentation](./OuroMini/docs/EXPO.md)  
+**Docs:** 
+[Ouromini Abstract](OuroMini/docs/ABSTRACT.md)
+[OuroMini Expo Documentation](./OuroMini/docs/EXPO.md)  
 [Architecture & Firmware Details](./OuroMini/docs/ARCHITECTURE.md)
 
 ---

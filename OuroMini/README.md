@@ -121,6 +121,7 @@ dashboard/
 
 ---
 
-## 🧾 License
+## 📜 License
 
-**MIT License** — Open for research, educational, and controlled demo use. **Not for commercial deployment or unauthorized offensive use.**
+**Project Ouroboros** © 2025 **MARS Foundation**  
+Licensed under **GNU AGPL-3.0** – use, modify, and redistribute under AGPL terms. See [LICENSE](LICENSE).
