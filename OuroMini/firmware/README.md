@@ -1,4 +1,4 @@
-# Ouroboros Mini – Firmware Overview & Flow (Updated)
+# Ouroboros Mini – Firmware Overview & Flow
 
 ## Overview
 The **Ouroboros Mini (OuroMini)** firmware is designed for **rapid deployment in a 15-day experimental build**, optimized for **dual-use wireless security research**, telemetry logging, and **on-device visualization**. This firmware demonstrates **Wi-Fi, BLE, Sub-GHz, RFID/NFC, IR, NRF24, and FM scanning capabilities**.  
