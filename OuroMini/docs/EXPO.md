@@ -1,83 +1,86 @@
 # Ouroboros Mini 15-Day Expo Presentation
 
 ## Overview
-The Ouroboros Mini is a highly condensed, experimental wireless defense suite built on the ESP32 platform, designed and executed in an intense 15-day period specifically for exposition and demonstration purposes. Unlike full-scale production models, this version prioritizes **speed of implementation, visual clarity, and demonstrable functionality** over complete feature coverage. This presentation documents the technical workflow, hardware/software integration, and insights from rapid prototyping.
+Ouroboros Mini (OuroMini) is a compact, dual-use experimental wireless monitoring and defense platform, built under an accelerated 15-day development cycle. Designed for research expos, educational demos, and controlled cybersecurity demonstrations, the prototype emphasizes modular expandability, real-time visualization, and interactive engagement over full-scale production features.
 
----
+It embodies the Ouroboros philosophy: the eternal cycle of defense and offense, unified in a single hardware and firmware ecosystem.
 
 ## Project Objective
-The primary goal of the Ouroboros Mini was to produce a **functional, demonstrable wireless defense device** capable of illustrating key offensive and defensive mechanisms in Wi-Fi, BLE, and Sub-GHz domains. Given the 15-day timeframe, the project focused on showcasing **proof-of-concept functionalities** such as signal detection, basic anomaly indication, and a simple TFT visual interface.
+The primary objective of the Ouroboros Mini is to provide a tangible demonstration of multi-protocol wireless security and telemetry in a highly compressed development timeframe. It highlights:
 
-### Key Highlights
-- **Rapid Prototyping:** The system was designed and implemented from PCB and firmware baseline to operational demo in 15 days.
-- **Expo-Ready Demonstration:** Simplified interaction with real-time signal visualization on TFT display for audience comprehension.
-- **Lightweight Engineering:** Avoided complex AI/TinyML implementations; concentrated on robust, functional firmware and user interface.
+- Real-time scanning and visualization for Wi-Fi, BLE, and Sub-GHz signals.
+- Basic defensive analytics and simple offensive research demonstrations in a safe, expo-ready format.
+- Interactive OLED visualization, including RSSI bars, waterfall spectrums, and ghost-trace overlays for audience comprehension.
 
----
+## Key Highlights
+- **Rapid Prototyping:** Complete functional prototype from PCB baseline to operational demo in 15 days.
+- **Expo-Ready Visualization:** Interactive OLED display and optional web dashboard for clear audience engagement.
+- **Dual-Use Demonstration:** Supports passive defense and controlled research operations, switchable for safety.
+- **Simplified Engineering:** Focused on firmware modularity and visualization rather than complex AI/TinyML integration.
 
 ## Architecture & Integration
-The device architecture merges hardware and firmware into a **single cohesive demonstration unit**, emphasizing modularity for rapid development.
+Ouroboros Mini merges hardware, firmware, and visualization into a single cohesive demonstration unit, emphasizing modularity, clarity, and rapid development.
 
 ### Main Components
-- **ESP32-U MCU (16MB):** Central processing for wireless monitoring and UI rendering.
-- **TFT Display (ILI9341, 2.8 inch):** Provides real-time visualization of Wi-Fi, BLE, and Sub-GHz signals.
-- **Push Buttons & PCF8574 I/O Expander:** Allows menu navigation and device interaction.
-- **External Antenna Connectors:** For Wi-Fi and BLE signal reception.
+- **ESP32-WROOM-32U/E (16MB):** MCU for wireless scanning, processing, and UI rendering.
+- **OLED Display (SSD1306 / SH1106):** Low-power display for real-time telemetry, ghost traces, and menu navigation.
+- **SD Card Slot (SPI):** Logging of Wi-Fi, BLE, Sub-GHz data, configuration, and replay files.
+- **External Antennas (U.FL/SMA):** Optimized reception for Wi-Fi, BLE, and Sub-GHz.
+
+**Peripheral Modules (Optional):**
+- CC1101 (Sub-GHz)
+- NRF24L01+ (mesh/network testing)
+- PN532 / RFID-NFC (tag scanning & emulation)
+- IR transceiver (capture/replay)
+- FM/audio visualization
 
 ### Firmware Flow
-- **Real-Time Scanning:** Scans Wi-Fi channels 1–13, BLE advertisements, and Sub-GHz activity.
-- **Signal Logging:** Stores minimal logs on SD card to demonstrate packet capture.
-- **User Interface:** TFT display visualizes channel RSSI levels and active signals.
-- **Simplified Countermeasures:** Visual indicators for deauth detection and rogue AP detection.
+- **Initialization:** Boot, hardware detection, configuration load.
+- **Scan Cycle:** Wi-Fi, BLE, and Sub-GHz signal acquisition.
+- **Analysis & Logging:** RSSI measurement, basic anomaly detection, and structured logging to SD.
+- **Visualization:** OLED renders live bars, waterfall spectrums, and ghost traces.
+- **Optional Telemetry:** JSON-formatted data sent to dashboard via HTTP or WireGuard tunnel.
+- **Loop:** Adaptive scan → analysis → render → optional telemetry → repeat.
 
----
+### Safety & Demo Constraints
+- Watchdog timers reset on scan/display failures.
+- SD card I/O errors fallback to serial-only logging.
+- Dual-mode toggle (Defensive / Research) enforces safe demonstration limits.
 
 ## Hardware Setup for Expo
-While the full PCBA supports extensive offensive/defensive operations, the mini version was reduced to **core demonstration hardware**:
-- Fully assembled Main Board with TFT display, push buttons, and ESP32.
-- Battery connected to TP4056 module.
+The 15-day build focused on **core demonstration hardware** for rapid deployment:
+- Fully assembled mainboard with ESP32, OLED, and minimal peripherals.
+- Battery connected via TP4056 module.
 - External antennas attached for Wi-Fi/BLE demonstration.
-
-**Note:** No Shield modules were integrated in this 15-day build to maintain simplicity and reduce assembly complexity.
-
----
+- No additional Shield modules integrated to maintain assembly simplicity.
 
 ## Firmware & Flashing
-The firmware was adapted from a pre-existing prototype `.bin` to save time. It incorporates:
-- Modular scanning routines.
-- Simplified menu-driven UI for real-time demonstration.
-- SD card logging for visual evidence.
-
-Flashing to the device was performed using **esptool** or Arduino IDE, ensuring **OTA updates and SD card loading** are possible for live demonstration adjustments.
-
----
+- Firmware adapted from a pre-existing prototype `.bin` for fast deployment.
+- Modular scanning routines and menu-driven OLED UI for live interaction.
+- SD card logging and optional JSON telemetry for visual evidence.
+- Flashing performed using **esptool or Arduino IDE**, supporting OTA updates and runtime adjustments.
 
 ## Demo Scenario
-For the expo, the following workflow is presented to the audience:
-1. **Power-On:** Device initializes and shows boot sequence on TFT.
-2. **Signal Scan:** Wi-Fi, BLE, and Sub-GHz signals appear in graphical form.
-3. **Interaction:** Users press buttons to view specific channels or protocols.
-4. **Event Indication:** Device highlights rogue APs or interference patterns with simple visual alerts.
+Audience demonstration workflow:
+1. **Power-On:** Device boot sequence on OLED display.
+2. **Signal Scan:** Real-time visualization of Wi-Fi, BLE, and Sub-GHz signals.
+3. **Interaction:** Buttons or menu navigation to inspect specific channels/protocols.
+4. **Event Indication:** Simple visual alerts for rogue APs, interference, or beacon deviations.
 
-This workflow allows the audience to quickly grasp **core cybersecurity functionalities** in a tangible, visual manner.
-
----
+This scenario allows audiences to quickly grasp core wireless security principles through tangible, real-time feedback.
 
 ## Key Takeaways from 15-Day Build
-- **Feasibility:** Complex wireless defense mechanisms can be condensed into a functional expo demonstration without fully implementing all modules.
-- **Team Coordination:** Delegation of firmware, PCB management, and assembly tasks was critical under extreme time constraints.
-- **Rapid Iteration:** Pre-existing firmware prototype accelerated development by focusing on UI and signal visualization enhancements.
-- **Demonstration Focus:** Prioritizing audience comprehension over complete technical depth ensured the project met expo objectives successfully.
-
----
+- **Feasibility:** Rapid condensed development can produce a functional dual-use wireless defense prototype.
+- **Team Coordination:** Effective delegation of firmware, PCB assembly, and UI visualization was critical.
+- **Rapid Iteration:** Leveraging pre-existing firmware accelerated UI and scan visualization enhancements.
+- **Demo Focus:** Audience comprehension prioritized over full technical depth ensured successful exposition.
 
 ## Future Directions
-Post-expo, the Ouroboros Mini can evolve into a more complete version by:
+Post-expo, Ouroboros Mini can be enhanced by:
 - Integrating Shield modules for BLE/Sub-GHz countermeasures.
-- Adding lightweight AI/TinyML models for anomaly detection.
-- Expanding web dashboard functionalities for remote monitoring.
+- Adding TinyML/AI modules for anomaly detection and adaptive scanning.
+- Expanding web dashboard for remote monitoring, historical logs, and analytics.
+- Supporting additional RF modules and advanced offensive/defensive research tools.
 
----
-
-**Conclusion:**
-The Ouroboros Mini 15-Day Expo Build serves as a **proof-of-concept and demonstration platform**, highlighting core wireless security monitoring capabilities in a visually engaging and technically sound format. This intense prototype underscores **rapid engineering feasibility, modular firmware deployment, and effective demonstration strategy** in extremely limited timelines.
+## Conclusion
+The Ouroboros Mini 15-Day Expo Build is a **proof-of-concept dual-use wireless security platform**, emphasizing interactive visualization, modular design, and rapid engineering feasibility. It demonstrates how condensed development can effectively showcase multi-protocol monitoring, ethical attack-defense research, and real-time telemetry to audiences in an expo-ready, visually engaging format.

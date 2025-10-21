@@ -1,24 +1,48 @@
 # Ouroboros Mini – Abstract
 
 ## Project Overview
-Ouroboros Mini is a compact, high-intensity experimental prototype designed to demonstrate foundational concepts in wireless network monitoring, telemetry, and on-device visualization. Developed within a strict 15-day timeframe for expo demonstration purposes, this build prioritizes rapid deployment and visual impact over full-scale commercial-grade functionality.
+
+**Ouroboros Mini** is a compact, dual-nature wireless cybersecurity prototype engineered for high-impact demonstration within a constrained 15-day development cycle. It merges embedded telemetry, spectrum visualization, and local data intelligence into a single, handheld form factor. Designed for expos, research showcases, and educational demonstrations, OuroMini emphasizes visual clarity, modular firmware, and low-cost scalability over commercial complexity.
+
+---
 
 ## Objective
-The primary objective of Ouroboros Mini is to present an interactive embedded system capable of detecting and visualizing Wi-Fi and BLE devices within its operational environment. The system serves as a tangible educational tool, allowing users to observe real-time spectrum activity, device presence, and signal metrics through a TFT display and optional web dashboard.
+
+The core goal of Ouroboros Mini is to **illustrate the balance between wireless monitoring, analysis, and control** through a single, self-contained microcontroller platform. It acts as both a **defensive diagnostic tool** and a **research-grade testbed** for wireless security exploration, highlighting real-time signal behavior across Wi-Fi, BLE, and optional Sub-GHz bands.
+
+---
 
 ## Scope & Limitations
-- No AI or TinyML-based anomaly detection is included due to time constraints.  
-- Sub-GHz coverage and advanced mitigation features are minimal or omitted.  
-- The build is intended strictly for expo demonstration and experimental research purposes, not for consumer deployment or commercial use.
+
+* **Scope:** Demonstrates Wi-Fi and BLE scanning, live spectrum rendering, telemetry logging, and optional dashboard-based data visualization.
+* **Limitations:**
+
+  * No TinyML/AI-based anomaly detection (reserved for full Ouroboros build).
+  * Sub-GHz, NFC, and RF replay features partially stubbed or deactivated.
+  * Certain offensive capabilities are research-locked and not deployed in demo mode.
+* **Usage Note:** Strictly experimental — for controlled, lawful environments only.
+
+---
 
 ## Technical Highlights
-- **Embedded MCU:** ESP32-U (16MB) provides integrated Wi-Fi and BLE capabilities.  
-- **On-Device Visualization:** 2.8-inch TFT display renders live telemetry, scanning results, and signal metrics.  
-- **Data Logging:** SD card integration allows storage of captured device information and scan history.  
-- **Rapid Firmware Deployment:** Pre-compiled `.bin` firmware enables quick flashing and reproducible demonstration.  
-- **Dashboard Integration:** Optional lightweight web interface for visualizing real-time metrics beyond the device screen.
+
+* **MCU Platform:** ESP32-WROOM-32U (16 MB) with integrated Wi-Fi + BLE, SPI, UART, and GPIO expandability.
+* **Visualization Layer:** 0.96" OLED or 2.8" TFT (ILI9341) for on-device telemetry and spectrum graphing.
+* **Logging & Storage:** MicroSD SPI slot for local data capture, session replay, and forensic export.
+* **Connectivity Modules:** NRF24L01 transceivers, BLE scanner, optional Sub-GHz stub for RF spectrum sampling.
+* **Firmware Architecture:** Modular C++/Arduino framework supporting detachable offensive/defensive subsystems.
+* **Deployment:** Ready-to-flash precompiled `.bin` images; supports UART, SD, or OTA flashing for rapid demo setup.
+
+---
 
 ## Impact
-Ouroboros Mini exemplifies a rapid-development, research-oriented approach to embedded wireless defense engineering. It provides an accessible platform for demonstrating spectrum monitoring and telemetry analysis in a visually engaging, expo-ready format.
 
-**Note:** This project is experimental, focusing on proof-of-concept demonstrations rather than full-feature production. It reflects an intense, accelerated engineering effort within a limited timeframe.
+Ouroboros Mini stands as a **symbol of accelerated engineering discipline**, compressing hardware design, firmware integration, and UI logic into a functioning, exposable prototype. It enables cybersecurity educators, researchers, and enthusiasts to observe real-time wireless phenomena in a tangible, interpretable form.
+
+By merging hardware telemetry with human-readable visualization, OuroMini embodies the philosophy of **Project Ouroboros** — the eternal cycle of attack and defense — rendered through practical, educational hardware experimentation.
+
+---
+
+**Disclaimer:**
+This firmware and hardware are strictly for **educational and authorized research purposes**.
+Unauthorized or unlawful usage of wireless interference features may violate regional regulations.
