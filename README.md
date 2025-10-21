@@ -1,7 +1,4 @@
 # Project Ouroboros – Unified Wireless Security Platform
-
-<img width="1794" height="835" alt="Project Ouroboros Screenshot" src="https://github.com/user-attachments/assets/25e70f40-4bfa-4453-8d07-8d3e017d1424" />
-
 > ⚠️ **Disclaimer:** This project is for **educational, research, and ethical security purposes only**. Misuse of hardware or software is strictly the responsibility of the user.
 
 ---
