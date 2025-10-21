@@ -4,8 +4,6 @@
 
 **Ouroboros Mini (OuroMini)** is an **ESP32-based experimental wireless monitoring and security testing platform**. Engineered under a **15-day rapid prototype cycle**, it combines **dual-use capabilities** — both **defensive monitoring** and **controlled offensive research** — for educational, research, and expo demonstration purposes.  
 
-> ⚠️ **Experimental Only:** This build is **not a production system** and should **never be used for unauthorized attacks**. All offensive functions are intended for **research, teaching, and controlled lab environments**.
-
 ---
 
 ## 🔬 Project Objective
@@ -20,14 +18,9 @@
 
 ## ⚠️ Dual-Use & Legal Considerations
 
-The platform includes features that can be **illegal or restricted**:
 
-- Signal jamming & replay  
-- Wi-Fi deauth/flood attacks  
-- BLE spoofing & beacon spam  
-- Evil Portal simulations  
 
-**Always operate in a controlled lab or with explicit consent**. Follow **local laws and institutional policies**. Failure to comply may have legal consequences.
+
 
 ---
 
