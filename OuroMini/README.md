@@ -1,5 +1,4 @@
-# OuroMini — Dual-Use Experimental Rapid Build.
-<img width="1520" height="910" alt="image" src="https://github.com/user-attachments/assets/db5c9c23-6bdd-4904-aa3a-1df08a7a8a2b" />
+<img width="1404" height="461" alt="image" src="https://github.com/user-attachments/assets/a79a3fb1-4c94-4892-a161-bd44abc40d88" />
 
 ---
 **Ouroboros Mini (OuroMini)** is an **ESP32-based experimental wireless monitoring and security testing platform**. Engineered under a **15-day rapid prototype cycle**, it combines **dual-use capabilities** — both **defensive monitoring** and **controlled offensive research** — for educational, research, and expo demonstration purposes.  
