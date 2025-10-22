@@ -68,9 +68,9 @@ The Ouroboros philosophy: **eternal cycle of attack & defense** — integrating 
 **Firmware:** Modular scanning, menu-driven UI, safe demo constraints.
 
 **Docs:** 
-[Ouromini Abstract](OuroMini/docs/ABSTRACT.md)
-[OuroMini Expo Documentation](./OuroMini/docs/EXPO.md)  
-[Architecture & Firmware Details](./OuroMini/docs/ARCHITECTURE.md)
+- [Ouromini Abstract](OuroMini/docs/ABSTRACT.md)
+- [OuroMini Expo Documentation](./OuroMini/docs/EXPO.md)  
+- [Architecture & Firmware Details](./OuroMini/docs/ARCHITECTURE.md)
 
 ---
 

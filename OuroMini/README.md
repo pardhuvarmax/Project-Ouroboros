@@ -1,7 +1,6 @@
-# OuroMini — Dual-Use Experimental Rapid Build (Red Pill)
+<img width="1404" height="461" alt="image" src="https://github.com/user-attachments/assets/a79a3fb1-4c94-4892-a161-bd44abc40d88" />
 
-<img width="1918" height="953" alt="OuroMini" src="https://github.com/user-attachments/assets/085d83fb-c0c3-4fa0-bbd3-94b4ded8f8ed" />
-
+---
 **Ouroboros Mini (OuroMini)** is an **ESP32-based experimental wireless monitoring and security testing platform**. Engineered under a **15-day rapid prototype cycle**, it combines **dual-use capabilities** — both **defensive monitoring** and **controlled offensive research** — for educational, research, and expo demonstration purposes.  
 
 ---
@@ -18,8 +17,7 @@
 
 ## ⚠️ Dual-Use & Legal Considerations
 ![Warning](media/WARNING.svg)
-
-
+> Warning: OuroMini is intended solely for educational, research, and ethical security testing purposes. Unauthorized use on networks or devices you do not own or have explicit permission to test is illegal and strictly prohibited. Users must comply with local wireless regulations (FCC, CE, ISM bands) and follow responsible disclosure practices. The developers are not liable for misuse or unlawful activities. Always operate safely, ethically, and within the law.
 
 ---
 
@@ -107,7 +105,8 @@ dashboard/
 - `docs/Architecture.md` — Full hardware/software mapping  
 - `docs/Firmware_Flow.md` — Module descriptions & compile flags  
 - `docs/Expo_Presentation.md` — Demo instructions & safety scripts  
-- `docs/Dashboard_Design.md` — Data visualization & UI layout  
+- `docs/Dashboard_Design.md` — Data visualization & UI layout 
+- [`Expo-PPT`](https://stool-vast-77297611.figma.site/) - Expo Presentation
 
 ---
 
@@ -117,7 +116,12 @@ dashboard/
 - **Lab Isolation:** Use Faraday cages or dedicated RF testing environments  
 - **Permission:** Obtain explicit consent before running offensive functions  
 - **High-Risk Modules:** Segregate jamming, Evil Portal, BLE spoofing scripts  
-- **Demonstration:** Keep visualizations and dashboard active to highlight research/education value
+- **Demonstration:** Keep visualizations and dashboard active to highlight research/education value.
+
+---
+
+## Team OuroMini
+<img width="1524" height="496" alt="Screenshot 2025-10-21 150201" src="https://github.com/user-attachments/assets/0fd03122-b55d-41dc-b130-a8b48d0b1882" />
 
 ---
 
@@ -125,3 +129,5 @@ dashboard/
 
 **Project Ouroboros** © 2025 **MARS Foundation**  
 Licensed under **GNU AGPL-3.0** – use, modify, and redistribute under AGPL terms. See [LICENSE](LICENSE).
+
+---
