@@ -114,12 +114,6 @@ dashboard/
 
 ---
 
-## Team OuroMini
-
-![Team](https://github.com/user-attachments/assets/0fd03122-b55d-41dc-b130-a8b48d0b1882)
-
----
-
 ## 📜 License
 
 **Project Ouroboros** © 2025 **MARS Foundation**
