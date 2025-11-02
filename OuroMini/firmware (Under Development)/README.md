@@ -1,138 +1,159 @@
-# Ouroboros Mini – Firmware Overview & Flow
+# Ouroboros Mini – Firmware Overview & Flow (Headless ESP32-WROOM32)
 
 ## Overview
-The **Ouroboros Mini (OuroMini)** firmware is designed for **rapid deployment in a 15-day experimental build**, optimized for **dual-use wireless security research**, telemetry logging, and **on-device visualization**. This firmware demonstrates **Wi-Fi, BLE, Sub-GHz, RFID/NFC, IR, NRF24, and FM scanning capabilities**.  
 
-**Scope:**
-- On-device scanning/security testing of multiple wireless protocols (Wi-Fi, BLE, Sub-GHz, NRF24, IR, RFID/NFC, FM)  
-- Real-time visualization on OLED display  
-- Local logging to SD card / LittleFS  
-- Modular architecture for rapid feature integration and firmware experimentation  
-- Experimental features for controlled, authorized environments only  
+The **Ouroboros Mini (OuroMini)** firmware is a **15-day rapid prototype** firmware optimized for **dual-use wireless security research** on a headless **ESP32-WROOM-32** board.
+Focus areas: **Wi-Fi (2.4 GHz)** and **Bluetooth Low Energy (BLE)** scanning/telemetry, on-device capture/export, web-hosted dashboards, and modular demo sequences. Optional carrier-board peripherals (IR TX/RX, microSD, LEDs, kill switch) are supported if present.
 
-> ⚠️ **Experimental / Legal Warning:** High-risk features (jamming, deauth, Evil Portal, NFC/RFID writes, BADUSB scripting) **must only be used in controlled, authorized environments**. Ensure compliance with local laws and institutional policies.
+**Scope**
+
+* On-device scanning and capture for Wi-Fi (2.4 GHz) and BLE.
+* Real-time telemetry for expo demos via a small web dashboard hosted by the ESP.
+* Local logging to LittleFS (internal flash) and optional microSD.
+* Modular architecture for rapid feature integration and iteration.
+* High-visibility demo sequences for authorized expo/lab environments.
+
+> ⚠️ **Legal/Operational Warning:** Any high-impact offensive features (deauth, Evil Portal, packet injection, active transmissions) must only be used in authorized, controlled environments. Follow local wireless regulations and venue rules.
 
 ---
 
-## Firmware Structure
+## Repo Layout
+
 ```
 firmware/
 │
 ├── source/
-│ ├── .ino # Core loop, setup, and task scheduler
-│ ├── modules/ # Protocol modules (Wi-Fi, BLE, Sub-GHz, RFID/NFC, IR, NRF24)
-│ ├── libs/ # Custom and third-party libraries (OLED, WS2812, logging)
-│ └── config.h # User-configurable constants & feature toggles
+│   ├── main.ino            # Core loop, setup, lightweight scheduler
+│   ├── modules/            # wifi/, ble/, ir/ (if present), utils/
+│   ├── libs/               # drivers: oled, websocket, logging utilities
+│   └── config.h            # feature toggles & constants (expo_config.h variant)
 │
-├── binaries/ # Precompiled firmware binaries (.bin)
-└── flashing.md # Flashing instructions for prototype devices
+├── binaries/               # prebuilt .bin (ouromini-expo.bin, ouromini-safe.bin)
+├── docs/                   # docs/Expo_Presentation.md, Architecture.md, etc.
+└── flashing.md             # flashing & quick start instructions
 ```
 
+---
+
+## Key Modules & Feature Matrix
+
+> **Hardware baseline:** ESP32-WROOM-32 only (headless). Features marked *Optional HW* require extra components on the carrier board (microSD, IR LED/receiver, external sensors).
+
+| Feature / Module       | Type              | Status       | Notes                                                                  |
+| ---------------------- | ----------------- | ------------ | ---------------------------------------------------------------------- |
+| Wi-Fi Scanner          | Defensive         | Stable       | Passive & active scan, AP/client enumeration, RSSI mapping.            |
+| Wi-Fi Packet Capture   | Defensive         | Stable       | Promiscuous 2.4 GHz frame capture & basic logging (limited DPI).       |
+| WPA Handshake Capture  | Defensive         | Stable       | Capture for export (offline cracking off-device).                      |
+| Deauth / Flood         | Offensive         | Experimental | 2.4 GHz targeted deauth and rate-limited floods; expo/lab use only.    |
+| Beacon / Fake AP       | Neutral           | Stable       | Create SSIDs / fake APs; flood intensity configurable.                 |
+| Evil Portal            | Offensive         | Experimental | Captive portal hosting on AP — demo credential capture only.           |
+| BLE Scanner            | Defensive         | Stable       | Advertisement scanning, RSSI logging, presence tracking.               |
+| BLE Advertiser / GATT  | Neutral           | Stable       | Beacon/peripheral emulation, basic GATT server (demo control).         |
+| IR Capture / Replay *  | Neutral           | Optional     | Requires IR TX/RX hardware on carrier board.                           |
+| LittleFS / microSD Log | Defensive         | Stable       | Timestamped CSV/PCAP-lite logs; microSD optional for large captures.   |
+| Web Dashboard / API    | Neutral           | Stable       | WebSocket telemetry, HTTP API endpoints (hosted by ESP).               |
+| UART / Serial CLI      | Ops               | Stable       | Local serial CLI for interactive debugging.                            |
+| Thermal Sensor Readout | Ops               | Stable       | Internal temperature sensor reporting.                                 |
+| Kill-Switch GPIO       | Safety            | Stable       | Hardware input to immediately disable TX features when asserted.       |
+| OTA Update (HTTP)      | Ops               | Stable       | Simple HTTP OTA for controlled environments.                           |
+| BADUSB / Native USB*   | Offensive         | UNAVAILABLE  | **Not supported on WROOM32 (ESP32-S2/S3 required).**                   |
+| Sub-GHz / NRF24 / NFC* | Neutral/Offensive | UNAVAILABLE  | Require external radio modules/shields; not part of headless baseline. |
+
+* Optional or unavailable items are supported only if the carrier board includes the required hardware (marked clearly).
 
 ---
 
-## Key Modules & Features
+## Firmware Flow (High Level)
 
-| Feature / Module         | Type         | Status  | Notes                                                                                                  |
-|--------------------------|-------------|---------|--------------------------------------------------------------------------------------------------------|
-| Wi-Fi Scanner            | Defensive   | Stable  | Passive scanning, RSSI mapping, device enumeration, wardriving.                                        |
-| Wi-Fi Analyzer           | Defensive   | Stable  | Deep packet inspection, network visualization, top N networks.                                         |
-| Deauth / Flood           | Offensive   | Experimental | Targeted or full-channel; limited demo reliability, legal use only.                                   |
-| Beacon Spam / Evil Portal| Offensive   | Experimental | Demo purposes only; configurable per target network.                                                 |
-| BLE Scanner              | Defensive   | Stable  | Advertising monitoring, RSSI mapping, proximity visualization.                                        |
-| BLE Spoofer / Injection  | Offensive   | Low     | Device emulation and basic BLE signal injection; controlled testing only.                             |
-| Sub-GHz Capture / Replay | Neutral     | Stable  | Capture & replay of CC1101-compatible devices; TX disabled by default, dual-use depending on config.  |
-| Sub-GHz Jammer           | Offensive   | Experimental | Only for controlled demo; PWM/intermittent waveform support.                                         |
-| RFID / NFC Scanner       | Defensive   | Stable  | Passive scanning and logging of 125kHz/HF tags.                                                       |
-| RFID / NFC Emulation     | Offensive   | Experimental | Writes and emulations; lab demo only.                                                                 |
-| IR Capture / Replay      | Neutral     | Stable  | TV, NEC, SIRC, custom IR sequences; for demo visualization.                                           |
-| NRF24 Packet Monitor     | Neutral     | Stable  | Mesh and packet inspection; jamming/demo optional.                                                    |
-| FM Scan / Broadcast      | Neutral     | Experimental | Limited demo broadcast; regional compliance required.                                                |
-| OLED Display UI          | Defensive   | Stable  | Waterfall/spectrum graphs, ghost traces, top device metrics, menu navigation.                         |
-| WS2812 LEDs              | Neutral     | Stable  | Status and demo visual effects.                                                                      |
-| Data Logging (SD/LittleFS)| Defensive  | Stable  | CSV logging of Wi-Fi/BLE/RF/IR/NFC captures, exportable for offline analysis.                        |
-| USB / BADUSB             | Offensive   | Experimental | Keyboard scripting, JS interpreter, OpenHaystack demos.                                             |
-| Connectivity / WebUI     | Neutral     | Stable  | Wi-Fi client/AP, WireGuard, TCP/UDP streaming, remote telemetry, Wigle upload.                       |
+1. **Boot & Init**
 
-> **Legend:**  
-> - **Defensive:** Passive monitoring, logging, visualization, or alerting features.  
-> - **Neutral / Dual-Use:** Can be passive or active depending on configuration.  
-> - **Offensive:** Active features for penetration testing, jamming, spoofing, or injection; strictly for controlled demos.
+   * Boot ROM → app starts.
+   * Initialize logging (LittleFS), serial console, thermal sensor.
+   * Probe for optional hardware (microSD, IR, LEDs); mount if present.
+   * Load `config.h` / runtime config (expo vs safe build).
 
----
+2. **Network & Radio Setup**
 
-## Firmware Flow (High-Level)
+   * Wi-Fi driver: configure station/AP modes as requested; enable promiscuous if capture enabled.
+   * BLE stack: start advertisement scanning and optional peripheral services.
+   * IR module (if present): initialize capture hardware.
+   * Configure web server & WebSocket endpoints.
 
-1. **Initialization**
-   - MCU boots and initializes OLED, SD card, WS2812 LEDs, and serial console.
-   - Loads user config from `config.h` or SD card if available.
-   - Initializes Wi-Fi, BLE, Sub-GHz, RFID/NFC, IR, NRF24 modules based on config.
+3. **Main Loop — Scanning & Buffering**
 
-2. **Network & RF Interface Setup**
-   - Wi-Fi: Station + scan mode, RSSI mapping.
-   - BLE: Advertising scanning active.
-   - Sub-GHz: Optional capture/replay enabled if shield/module present.
-   - RFID/NFC and IR: Passive capture initialized.
-   - NRF24: Packet sniffing initialized.
+   * Run periodic scan tasks (Wi-Fi, BLE) on configurable intervals.
+   * Buffer captured frames/adv packets in RAM (ring buffer) for short-term visualization.
+   * Flush logs to LittleFS or microSD every N seconds or when buffer full.
 
-3. **Scanning & Monitoring Loop**
-   - Periodic scans for Wi-Fi, BLE, Sub-GHz, RFID/NFC, IR, NRF24.
-   - Data buffered in memory for real-time visualization.
-   - Optional passive logging to SD card/LittleFS.
+4. **Demo / Active Modules**
 
-4. **Active Features (Dual-Use / Demo)**
-   - Offensive modules activated via config/menu: deauth, beacon spam, Evil Portal, BLE injection, Sub-GHz replay/jamming, RFID/NFC write, BADUSB scripts.
-   - TX strictly controlled, disabled by default for dual-use safety.
+   * Operator triggers demo sequence via Web CLI or scheduled script.
+   * Offensive modules (deauth, fake AP, Evil Portal) start only when explicitly commanded.
+   * Respect configured rate-limits and enforce temporary TX backoff on errors.
 
-5. **Visualization**
-   - OLED: Real-time spectrum/waterfall, ghost traces, top devices, RSSI metrics.
-   - WS2812: Status and interactive visual feedback.
-   - Push buttons: Menu navigation, feature toggling, demo control.
+5. **Visualization & Telemetry**
+
+   * WebSocket pushes short history: device lists, RSSI timeseries, alerts.
+   * Serial CLI available for live control and debug.
+   * Optional minimal OLED or LED feedback if carrier board has them.
 
 6. **Error Handling & Recovery**
-   - SD card: Retry and serial logging on write failures.
-   - OLED: Skip frame on refresh errors, continue scanning.
-   - Watchdog timer: Auto-reboot on MCU deadlocks or unresponsive modules.
+
+   * File IO: retry writes; rotate logs on SD errors.
+   * Watchdog timer resets on fatal deadlocks after graceful shutdown attempt.
+   * Module restart on non-fatal driver failures (e.g., BLE stack hiccups).
 
 ---
 
-## Development Notes
+## Development Notes & Tooling
 
-- Compatible with **Arduino IDE** and ESP32-S3 toolchain.  
-- Key libraries: 
-  - `WiFi.h` – Wi-Fi scanning & networking  
-  - `ESP32 BLE Arduino` – BLE scanning & peripheral simulation  
-  - `libs/` – Custom logging, module abstraction, Sub-GHz utilities  
-- Precompiled `.bin` files available for rapid flashing.  
-- OTA updates optional; recommended for controlled, demo-only environments.
+* **Primary Framework:** Arduino-ESP32 (fast iteration). ESP-IDF port recommended for advanced/performance builds.
+* **Toolchain:** PlatformIO (recommended) or Arduino CLI + esp32 core. Use `esp32dev` board profile for WROOM32 carriers.
+* **Key libs:** `WiFi.h`, `esp_wifi_promiscuous.h` utilities, `NimBLE-Arduino` / `ESP32 BLE Arduino` stack, `AsyncWebServer` / `WebSockets`.
+* **Structure tips:** Keep offensive TX code in isolated modules/files and call through guarded APIs to make auditing easier.
+* **Prebuilt binaries:** Provide `ouromini-expo.bin` (full demo) and `ouromini-safe.bin` (observability only) if you want two release options — though the headless expo build can include all feasible features by default per your expo needs.
 
 ---
 
-## Limitations (Experimental Expo-Focused Build)
+## Flashing Procedure (ESP32-WROOM-32 headless)
 
-- TinyML anomaly detection & auto-healing not implemented.  
-- Full multi-protocol jamming is **experimental only**; enable strictly in authorized environments.  
-- Sub-GHz, NRF24, RFID/NFC, IR, and FM modules may require hardware shield for full capability.  
-- Focused on **visual clarity and modular demo architecture** rather than production-grade stability.
+1. Connect via USB-to-serial (FTDI/CP210x/CH340) to your carrier board.
+2. Use PlatformIO `pio run -t upload` or `esptool.py` / Espressif Flash Tool. Example `esptool.py` command:
+
+```bash
+esptool.py --chip esp32 --port /dev/ttyUSB0 write_flash -z \
+  0x1000 bootloader.bin 0x8000 partitions.bin 0x10000 ouromini-expo.bin
+```
+
+3. If using Arduino IDE, select `ESP32 Dev Module` / appropriate flash size & flash the `.bin`.
+4. Verify: serial output should show boot banner, config, mounted LittleFS (or SD) and IP for captive AP (if started).
+
+> Note: WROOM32 does not support native USB device HID (BADUSB). Do not attempt S2/S3 toolchain instructions on WROOM32 builds.
 
 ---
 
-## Recommended Flashing Procedure
+## Limitations & Notes (Headless Expo Build)
 
-1. Use **Espressif Flash Download Tool** or Arduino IDE.  
-2. Load `.bin` from `binaries/` folder.  
-3. Connect ESP32-S3 via USB, enter **Download Mode** (BOOT + RESET sequence).  
-4. Set SPI flash offsets per ESP32 module type (0x10000 for main app, 0x8000 for partition table).  
-5. Start flashing; verify OLED boot menu, WS2812 status, and SD logging functionality.
+* **No native USB HID (BADUSB)** on WROOM32 — remove USB HID workflows or require S2/S3 hardware.
+* **No built-in Sub-GHz / NRF24 / NFC / FM** — these need shields or external radios; the firmware contains hooks but will hide unavailable menus if hardware not present.
+* **DPI is limited** — the MCU cannot perform full DPI; store captures for offline analysis on a PC.
+* **Thermal & power:** Continuous TX + heavy logging increases device temp and power draw — monitor thermal values in the Web UI.
+* **Regulatory:** Be sure to obtain permission for any active transmissions or disruptive demos.
+
+---
+
+## Recommended Expo Checklist (headless)
+
+* Verify carrier board has microSD (if large logs), IR (if demo needs IR), and kill-switch wired.
+* Preload `ouromini-expo.bin` and test offline handshake capture → export.
+* Prepare one scripted demo sequence (scan → fake AP → evil portal → deauth burst) and rehearse in RF-safe area.
+* Ensure venue permissions; inform neighboring booths if demo includes active TX.
+* Keep physical kill-switch accessible and tested.
 
 ---
 
 ## Summary
 
-The **Ouroboros Mini firmware** provides a **modular, multi-protocol experimental platform** for rapid demonstration of dual-use wireless security research:
+This headless-focused firmware targets robust **Wi-Fi (2.4 GHz)** and **BLE** research & demo workflows on an **ESP32-WROOM-32** platform with optional carrier-board peripherals. The firmware is modular and optimized for quick expo demonstration while keeping a clear separation between passive monitoring and explicit active demo modules.
 
-- **Defensive / monitoring features:** Wi-Fi/BLE/Sub-GHz/RFID/NFC/IR passive scanning, logging, visualization.  
-- **Neutral / dual-use features:** Replay, packet monitoring, remote telemetry, menu-controlled toggling.  
-- **Offensive / demo-only features:** Deauth, beacon spam, Evil Portal, BLE injection, BADUSB, NFC/RFID writes.  
-
-This firmware is **intended for expo demonstration, educational purposes, and controlled research**, with clear **legal and safety boundaries**.
+---
