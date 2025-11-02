@@ -5,7 +5,7 @@
     <!-- Header -->
     <div
       class="bg-pink-400 rounded-lg border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-4 flex justify-between items-center">
-      <h1 class="text-3xl font-black">marauder-ui</h1>
+      <h1 class="text-3xl font-black">ouromini-ui</h1>
       <div class="flex items-center space-x-4">
         <!-- Demo Mode Button -->
         <button v-if="!serialConnection.isConnected.value" @click="toggleDemoMode"
