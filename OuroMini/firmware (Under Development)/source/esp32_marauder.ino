@@ -146,6 +146,7 @@ void startAsyncScan();
 void onScanDone(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data);
 void backlightOn();
 void backlightOff();
+void fullWifiRecovery(); // recovery helper
 
 // --------------------
 // Idempotent setup guard + debug
@@ -179,6 +180,9 @@ static bool backgroundScanEnabled = true;   // master switch for background scan
 static bool backgroundScanPaused = false;   // true while sniff/other radio mode is active
 static bool pendingBackgroundScan = false;  // set when a scan was requested but couldn't run
 
+// persistent fail counter for recovery
+static int scanFailCount = 0;
+
 // --------------------
 // Helper globals & functions (must be defined before loop() so they're visible)
 // --------------------
@@ -194,6 +198,68 @@ bool isPromiscuousEnabled() {
     esp_err_t rc = esp_wifi_get_promiscuous(&enabled);
     (void)rc; // ignore return code here
     return enabled;
+}
+
+// --------------------
+// Full Wi-Fi recovery (safe reinit for APSTA mode)
+// --------------------
+void fullWifiRecovery() {
+    Serial.println("💀 Wi-Fi driver recovery triggered...");
+
+    // Stop and deinit to clear driver state
+    esp_wifi_stop();
+    vTaskDelay(pdMS_TO_TICKS(200));
+
+    // Deinit if possible (ignore errors)
+    esp_wifi_deinit();
+    vTaskDelay(pdMS_TO_TICKS(100));
+
+    // Reinitialize driver
+    wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
+    esp_err_t r = esp_wifi_init(&cfg);
+    if (r != ESP_OK) {
+        Serial.printf("⚠️ esp_wifi_init failed during recovery: %d\n", r);
+        return;
+    }
+
+    esp_wifi_set_storage(WIFI_STORAGE_RAM);
+    esp_wifi_set_mode(WIFI_MODE_APSTA);
+
+    // Re-apply STA config
+    wifi_config_t sta_config = {};
+    sta_config.sta.scan_method = WIFI_ALL_CHANNEL_SCAN;
+    sta_config.sta.sort_method = WIFI_CONNECT_AP_BY_SIGNAL;
+    sta_config.sta.threshold.authmode = WIFI_AUTH_OPEN;
+    esp_wifi_set_config(WIFI_IF_STA, &sta_config);
+
+    // Re-apply AP config
+    wifi_config_t ap_config = {};
+    strncpy((char*)ap_config.ap.ssid, "OuroMini", sizeof(ap_config.ap.ssid)-1);
+    ap_config.ap.ssid_len = strlen("OuroMini");
+    ap_config.ap.channel = 1;
+    strncpy((char*)ap_config.ap.password, "ouroboros", sizeof(ap_config.ap.password)-1);
+    ap_config.ap.max_connection = 4;
+    ap_config.ap.authmode = WIFI_AUTH_WPA_WPA2_PSK;
+    esp_wifi_set_config(WIFI_IF_AP, &ap_config);
+
+    // Start driver
+    esp_wifi_start();
+    vTaskDelay(pdMS_TO_TICKS(250));
+
+    // Re-register scan done handler: unregister first if stale
+    if (scan_done_handler_instance != NULL) {
+        esp_event_handler_instance_unregister(WIFI_EVENT, WIFI_EVENT_SCAN_DONE, scan_done_handler_instance);
+        scan_done_handler_instance = NULL;
+    }
+
+    esp_err_t er = esp_event_handler_instance_register(WIFI_EVENT, WIFI_EVENT_SCAN_DONE, &onScanDone, NULL, &scan_done_handler_instance);
+    if (er != ESP_OK) {
+        Serial.printf("⚠️ Re-registering scan done handler failed: %d\n", er);
+    } else {
+        if (showScanLogs) Serial.println("✅ Scan done handler re-registered after recovery");
+    }
+
+    Serial.println("✅ Wi-Fi stack reinitialized successfully");
 }
 
 // --------------------
@@ -396,7 +462,7 @@ void loop() {
 
             startAsyncScan();
             if (showScanLogs) Serial.println("▶ Background scan resumed");
-            else Serial.printf("⚠️ Failed to resume background scan");
+            else Serial.println("⚠️ Background scan resume attempted (no verbose logs)");
         }
     }
 
@@ -427,7 +493,7 @@ void backlightOff() {
 }
 
 // --------------------
-// Async Wi-Fi Scan (silent mode toggle)
+// Async Wi-Fi Scan (silent mode toggle) - improved/resilient version
 // --------------------
 void startAsyncScan() {
     if (!backgroundScanEnabled) return;       // master switch off
@@ -451,18 +517,49 @@ void startAsyncScan() {
     scanConf.scan_time.active.min = 100;
     scanConf.scan_time.active.max = 300;
 
-    esp_err_t err = esp_wifi_scan_start(&scanConf, false);
-    if (err != ESP_OK) {
-        // Ignore expected state conflict (ESP_ERR_WIFI_STATE) and silence spam
-        if (err != ESP_ERR_WIFI_STATE) {
-            Serial.printf("⚠️ esp_wifi_scan_start failed: %d\n", err);
+    // Try starting scan with lightweight retries and small recovery steps
+    const int maxRetries = 3;
+    int attempt = 0;
+    esp_err_t err = ESP_FAIL;
+
+    for (attempt = 0; attempt < maxRetries; ++attempt) {
+        err = esp_wifi_scan_start(&scanConf, false);
+        if (err == ESP_OK) break; // success
+
+        // If state conflict, attempt light recovery (allow driver to settle)
+        if (err == ESP_ERR_WIFI_STATE) {
+            if (showScanLogs) Serial.printf("⚠️ esp_wifi_scan_start state conflict (attempt %d/%d). Trying light driver recovery...\n", attempt+1, maxRetries);
+            // Light recovery: stop/start wifi driver (small pause)
+            esp_wifi_stop();
+            vTaskDelay(pdMS_TO_TICKS(150));
+            esp_wifi_start();
+            vTaskDelay(pdMS_TO_TICKS(200));
+            // then retry loop
+            continue;
         } else {
-            // If scan failed due to state, mark pending so we try later
-            pendingBackgroundScan = true;
-            backgroundScanPaused = true;
-            if (showScanLogs) Serial.println("⏸ Background scan paused (ESP_WIFI_STATE_CONFLICT)");
+            // Unexpected error -> log and break (don't keep spinning)
+            Serial.printf("⚠️ esp_wifi_scan_start failed: %s\n", esp_err_to_name(err));
+            break;
         }
+    }
+
+    if (err != ESP_OK) {
+        // Still failing after retries -> mark pending so loop() will try again later
+        scanFailCount++;
+        Serial.printf("🚫 scan start failed (consecutive %d)\n", scanFailCount);
+
+        // trigger full recovery after repeated failures
+        if (scanFailCount >= 3) {
+            Serial.println("🚨 Persistent scan failures detected — performing full Wi-Fi recovery");
+            fullWifiRecovery();
+            scanFailCount = 0;
+        }
+
+        pendingBackgroundScan = true;
+        backgroundScanPaused = true;
+        if (showScanLogs) Serial.println("⏸ Background scan paused (ESP_WIFI_STATE_CONFLICT after retries)");
     } else {
+        scanFailCount = 0;
         if (showScanLogs) {
             Serial.println("📡 Scan started (async)...");
         }
