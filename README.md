@@ -170,7 +170,7 @@ The Ouroboros philosophy: **eternal cycle of attack & defense** — integrating 
 
 ## 📜 License
 
-**Project Ouroboros** © 2025 **MARS Foundation**  
+**Project Ouroboros** © 2025 **REVA4 Research Initiative**  
 Licensed under **GNU AGPL-3.0** – use, modify, and redistribute under AGPL terms. See [LICENSE](LICENSE).
 
 ---
