@@ -116,7 +116,7 @@ dashboard/
 
 ## 📜 License
 
-**Project Ouroboros** © 2025 **MARS Foundation**
+**Project Ouroboros** © 2025 **REVA4 Research Initiative**
 Licensed under **GNU AGPL-3.0** — use and redistribution under AGPL terms. See `LICENSE` for details.
 
 ---
