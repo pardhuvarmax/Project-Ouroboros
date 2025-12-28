@@ -9,9 +9,8 @@
 
 It is structured as a parent ecosystem:
 
-* **Blue Pill:** Consumer-friendly, multi-layer defense shield (Wi-Fi, BLE, Sub-GHz) with anomaly detection and automated mitigation.
+* **Blue Pill (Passive Development) :** Consumer-friendly, multi-layer defense shield (Wi-Fi, BLE, Sub-GHz) with anomaly detection and automated mitigation.
 * **OuroMini:** Rapid-prototype dual-use demo board (15-day expo build) showcasing real-time wireless telemetry, visualization, and ghost traces.
-* **Modules:** Optional peripherals including Sub-GHz, NRF24, RFID/NFC, IR, FM, and spectrum analyzers.
 
 The Ouroboros philosophy: **eternal cycle of attack & defense** — integrating visualization, telemetry, and interactive demos in a single hardware/firmware ecosystem.
 
@@ -135,11 +134,6 @@ The Ouroboros philosophy: **eternal cycle of attack & defense** — integrating 
 │   ├───hardware
 │   ├───media
 │   └───tools
-├───Shields
-│   ├───CC1101
-│   ├───NRF24
-│   ├───RFID
-│   └───IR
 └───Docs
 ```
 
