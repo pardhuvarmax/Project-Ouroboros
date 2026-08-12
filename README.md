@@ -165,7 +165,14 @@ The Ouroboros philosophy: **eternal cycle of attack & defense** — integrating 
 ## 📜 License
 
 **Project Ouroboros** © 2025 
-Licensed under **GNU AGPL-3.0** – use, modify, and redistribute under AGPL terms. See [LICENSE](LICENSE).
+Licensed under **GNU GPL-3.0** – use, modify, and redistribute under GPL terms. See [LICENSE](LICENSE).
+
+## Credits & Attribution
+
+- OuroMini's firmware is derived from ESP32 Marauder by Just Call Me Koko, originally released under the MIT License (Copyright © 2020 Just Call Me Koko). Marauder was itself inspired by Spacehuhn's esp8266_deauther.
+What OuroMini changes: ported to ESP32-WROOM-32 as a headless target, removed the display, touch and on-device menu subsystems, and rebuilt the interaction layer around a web dashboard and serial/UART interface. See docs/ARCHITECTURE.md for the full breakdown.
+
+- OuroMini as a whole is licensed under GNU GPL-3.0. The original MIT-licensed Marauder components remain under their original terms, and the upstream notice is retained in LICENSE-MIT.
 
 ---
 
