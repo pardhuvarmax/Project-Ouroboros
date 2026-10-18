@@ -1,3 +1,7 @@
+> this project is archived, and no longer actively developed.
+
+
+
 # Project Ouroboros – Unified Wireless Security Research
 > ⚠️ **Disclaimer:** This project is for **educational, research, and ethical security purposes only**. Misuse of hardware or software is strictly the responsibility of the user.
 
